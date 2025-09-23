@@ -1,1 +1,16 @@
 # PDS2-20252-TM1-Mercado
+
+Projeto desenvolvido na disciplina de *PDS2*.  
+Este repositório contém os artefatos do sistema de *Totem de Supermercado*, um sistema de autoatendimento para facilitar a experiência do cliente e apoiar funcionários no gerenciamento de estoque e vendas.
+
+## 📂 Estrutura
+- Cartões CRC - Grupo 5.pdf → Definição dos cartões CRC.
+- User Stories - Grupo 5.pdf → Histórias de usuário do sistema.
+- README.md → Apresentação do repositório.
+
+## 👥 Grupo 5
+- Maria Eduarda Carvalho Costa  
+- Guilherme Prado  
+- Guilherme Mendonça
+- Maísa Vitória
+- Larissa Rafaele 
