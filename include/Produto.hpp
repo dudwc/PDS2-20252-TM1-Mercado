@@ -23,7 +23,13 @@ class Produto{
         double getPreco() const;
         int getID() const;
         bool estaDisponivel() const;
-        
+
+        void setName(std::string novoNome);
+        void setMarca(std::string novaMarca);
+        void setPreco(double novoPreco);
+        void setID(int novoID);
+        void setDisponivel(bool disponivel);
+
         void alterarPreco();
         void setDisponivel(bool disponivel);
 
