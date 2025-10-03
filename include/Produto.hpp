@@ -28,11 +28,10 @@ class Produto{
         void setMarca(std::string novaMarca);
         void setPreco(double novoPreco);
         void setID(int novoID);
-        void setDisponivel(bool disponivel);
+        void setDisponivel(bool disponivel);  
 
         void alterarPreco();
-        void setDisponivel(bool disponivel);
 
 };
 
-#endif 
+#endif
