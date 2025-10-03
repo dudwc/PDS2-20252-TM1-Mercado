@@ -36,7 +36,7 @@ void Produto::setID(int novoID){
     id = novoID;
 }
 
-void Produto::setDisponivel(bool disponivel){
+void Produto::setDisponivel(bool disponivel){ 
     this->disponivel = disponivel;
 }
 
@@ -47,8 +47,4 @@ void Produto::alterarPreco(){
     std::cin >> novoPreco;
     preco = novoPreco;
     std::cout << "Operacao confirmada.\n";
-}
-
-void Produto::setDisponivel(bool disponivel){
-    this->disponivel = disponivel;
 }
