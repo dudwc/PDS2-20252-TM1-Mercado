@@ -17,8 +17,8 @@ class Caixa{
         formaPagamento(formaPagamento), usuario(usuario), valorTotal(valorTotal), itensVenda(itensVenda) {}
         ~Caixa(){};
 
-        void RegistrarProduto(Produto p);
-        bool RemoverItem(Produto p);
+        void RegistrarProduto(const Produto p);
+        bool RemoverItem(const Produto p);
         int ExibirTotal() const;
         std::string  getFormaPagamento() const;
         int getUsuario() const;
