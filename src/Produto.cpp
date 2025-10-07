@@ -1,11 +1,15 @@
 #include "../include/Produto.hpp"
+#include <iomanip>
+#include <sstream>
+
+std::string Produto::formatPreco(double valor){
+    std::ostringstream oss;
+    oss << std::fixed << std::setprecision(2) << valor;
+    return oss.str();
+}
 
 std::string Produto::getName() const{
     return nome;
-}
-
-std::string Produto::getMarca() const{
-    return marca;
 }
 
 double Produto::getPreco() const{
@@ -24,10 +28,6 @@ void Produto::setName(std::string novoNome){
     nome = novoNome;
 }
 
-void Produto::setMarca(std::string novaMarca){
-    marca = novaMarca;
-}
-
 void Produto::setPreco(double novoPreco){
     preco = novoPreco;
 }
@@ -41,10 +41,27 @@ void Produto::setDisponivel(bool disponivel){
 }
 
 void Produto::alterarPreco(){
-    std::cout << "Preco atual: " << preco << std::endl;
+    std::cout << "Preco atual: " << formatPreco(preco) << std::endl;
     double novoPreco;
     std::cout << "Insira o novo preco: ";
     std::cin >> novoPreco;
     preco = novoPreco;
     std::cout << "Operacao confirmada.\n";
+}
+
+double FrutasEVerduras::getPeso() const{
+    return peso;
+}
+
+void FrutasEVerduras::setPeso(double novaPeso){
+    peso = novaPeso;
+}
+
+double FrutasEVerduras::pesar() {
+    double peso;
+    std::cout << "Insira o peso do produto em Kg: ";
+    std::cin >> peso;
+    this->setPeso(peso);
+    std::cout << peso << " Kg de " << nome << " por R$" << formatPreco(preco * peso) << std::endl;
+    return peso * preco;
 }
