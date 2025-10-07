@@ -8,30 +8,44 @@
 class Produto{
 
     protected:
-        std::string nome, marca;
+        std::string nome;
         double preco;
         int id;
         bool disponivel;
 
     public:
-        Produto(std::string nome, std::string marca, double preco, int id) : 
-            nome(nome), marca(marca), preco(preco), id(id), disponivel(true) {}
+        Produto(std::string nome, double preco, int id) : 
+            nome(nome), preco(preco), id(id), disponivel(true) {}
         ~Produto() {};
 
+        static std::string formatPreco(double valor);
+
         std::string getName() const;
-        std::string getMarca() const;
         double getPreco() const;
         int getID() const;
         bool estaDisponivel() const;
 
         void setName(std::string novoNome);
-        void setMarca(std::string novaMarca);
         void setPreco(double novoPreco);
         void setID(int novoID);
         void setDisponivel(bool disponivel);  
 
         void alterarPreco();
 
+};
+
+class FrutasEVerduras : public Produto{
+    private:
+        double peso;
+    public:
+        FrutasEVerduras(std::string nome, double preco, int id) :
+            Produto(nome, preco, id) {}
+        ~FrutasEVerduras() {};
+
+        double getPeso() const;
+        void setPeso(double novaPeso);
+
+        double pesar();
 };
 
 #endif
