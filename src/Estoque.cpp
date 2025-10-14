@@ -39,7 +39,8 @@ Estoque::Estoque(const std::map<Produto, int>& produtos) :
     for (const auto& produto : produtos) {
         arquivo << produto.first.getID() << " " 
                 << std::quoted(produto.first.getName()) << " " 
-                << std::fixed << std::setprecision(2) << produto.first.getPreco() 
+                << std::fixed << std::setprecision(2) << produto.first.getPreco() << " "
+                << produto.second << "unidades"
                 << std::endl;
     }
 
@@ -57,7 +58,8 @@ void Estoque::adicionarProduto(const Produto& produto, int qtd) {
     for (const auto& p : produtos) {
         arquivo << p.first.getID() << " " 
                 << std::quoted(p.first.getName()) << " " 
-                << std::fixed << std::setprecision(2) << p.first.getPreco() 
+                << std::fixed << std::setprecision(2) << p.first.getPreco() << " "
+                << p.second << "unidades"
                 << std::endl;
     }
 
@@ -81,7 +83,8 @@ bool Estoque::removerProduto(int id, int qtd){
                 for (const auto& p : produtos) {
                     arquivo << p.first.getID() << " " 
                             << std::quoted(p.first.getName()) << " " 
-                            << std::fixed << std::setprecision(2) << p.first.getPreco() 
+                            << std::fixed << std::setprecision(2) << p.first.getPreco() << " "
+                            << p.second << "unidades"
                             << std::endl;
                 }
 
