@@ -3,26 +3,36 @@
 
 #include <iostream>
 #include <string>
+#include <vector>
+#include <map>
 #include "Produto.hpp"
+#include "Estoque.hpp"
 
 class Caixa{
     private:
         std::string formaPagamento;
         int usuario;
-        int valorTotal;
-        std::vector <Produto> itensVenda;
+        Estoque& estoque;
+        
+        //carrinho: chave=ID do produto e valor=quantidade
+        std::map<int, int> carrinho;
     
     public:
-        Caixa(std::string formaPagamento, int usuario, int valorTotal, std::vector <Produto> itensVenda) :
-        formaPagamento(formaPagamento), usuario(usuario), valorTotal(valorTotal), itensVenda(itensVenda) {}
+        Caixa(std::string formaPagamento, int usuario, Estoque& estoque) :
+        formaPagamento(formaPagamento), usuario(usuario), estoque(estoque) {}
         ~Caixa(){};
 
-        void RegistrarProduto(const Produto p);
-        bool RemoverItem(const Produto p);
+        
+        bool CadastrarProduto(const Produto& p, int quantidade);
+
+        
+        bool AdicionarItem(const Produto& p,double quantidade=1);//quantidade=1 ao passar somente o p como parametro, já entende que a quantidade é um
+        bool RemoverItem(const Produto& p,double quantidade=1);
         int ExibirTotal() const;
+
+        
         std::string  getFormaPagamento() const;
         int getUsuario() const;
 };
-
 
 #endif
