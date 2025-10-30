@@ -15,14 +15,15 @@ Estoque::Estoque(){
         int id;
         std::string nome;
         double preco;
+        int quantidade;
 
-        if (!(iss >> id >> std::quoted(nome) >> preco)) {
+        if (!(iss >> id >> std::quoted(nome) >> preco >> quantidade)) {
             std::cout << "Erro ao ler a linha do arquivo: " << linha << std::endl;
             continue; // Pula para a próxima linha em caso de erro
         }
 
         Produto produto(nome, preco, id);
-        produtos[produto] = 1;
+        produtos[produto] = quantidade;
     }
 
     arquivo.close();
@@ -100,10 +101,19 @@ bool Estoque::removerProduto(int id, int qtd){
     return false;
 }
 
-const Produto* Estoque::buscarProduto(int id){
-    for (const auto& par : produtos) {
-        if (par.first.getID() == id) {
-            return &(par.first);
+const Produto* Estoque::buscarID(int id){
+    for (const auto& pair : produtos) {
+        if (pair.first.getID() == id) {
+            return &(pair.first);
+        }
+    }
+    return nullptr;
+}
+
+const Produto* Estoque::buscarNome(const std::string& nome){
+    for (const auto& pair : produtos){
+        if (pair.first.getName() == nome){
+            return &(pair.first);
         }
     }
     return nullptr;
@@ -111,9 +121,9 @@ const Produto* Estoque::buscarProduto(int id){
 
 void Estoque::listarProdutos() const{
     std::cout << "Produtos em estoque:\n";
-    for (const auto& par : produtos) {
-        const Produto& produto = par.first;
-        int quantidade = par.second;
+    for (const auto& pair : produtos) {
+        const Produto& produto = pair.first;
+        int quantidade = pair.second;
         std::cout << "ID: " << produto.getID() 
                   << ", Nome: " << produto.getName() 
                   << ", Preco: " << Produto::formatPreco(produto.getPreco()) 
