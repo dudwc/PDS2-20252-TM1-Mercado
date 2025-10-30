@@ -15,7 +15,7 @@ int main(){
     estoque.removerProduto(1, 5);
     estoque.listarProdutos();
 
-    const Produto* produto = estoque.buscarProduto(2);
+    const Produto* produto = estoque.buscarID(2);
     if (produto) {
         std::cout << "Produto encontrado: " << produto->getName() 
                   << " - Preco: " << Produto::formatPreco(produto->getPreco()) 
