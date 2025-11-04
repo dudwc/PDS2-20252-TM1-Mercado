@@ -4,7 +4,7 @@ Projeto desenvolvido na disciplina de *PDS2*.
 Este repositório contém os artefatos do sistema de *Totem de Supermercado*, um sistema de autoatendimento e também de caixa para facilitar a experiência do cliente e apoiar funcionários no gerenciamento de estoque e vendas.
 
 ## 📂 Estrutura
-# - *Gestão de Produtos (Produto.hpp/Produto.cpp)*
+#### - *Gestão de Produtos (Produto.hpp/Produto.cpp)*
 → Cadastro de produtos com ID, nome, preço e disponibilidade
 
 → Categoria especial Frutas e Verduras com controle de peso
