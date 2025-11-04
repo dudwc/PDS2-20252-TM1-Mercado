@@ -5,7 +5,7 @@ Este repositório contém os artefatos do sistema de *Totem de Supermercado*, um
 
 ## 📂 Estrutura
 - *Gestão de Produtos (Produto.hpp/Produto.cpp)*
-###→ Cadastro de produtos com ID, nome, preço e disponibilidade
+### → Cadastro de produtos com ID, nome, preço e disponibilidade
 
 → Categoria especial Frutas e Verduras com controle de peso
 
