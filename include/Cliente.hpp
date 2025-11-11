@@ -1,30 +1,34 @@
-#ifndef CLIENTE_H
-#define CLIENTE_H
+#ifndef CLIENTE_HPP
+#define CLIENTE_HPP
 
 #include <string>
 #include <vector>
-#include "Produto.hpp"
 
-
-class Cliente{
-
+class Cliente {
 private:
     std::string nome;
     std::string cpf;
-    std::vector<Produto> historicoCompras;
-
+    double totalGasto;
+    std::vector<std::string> historicoCompras; // guarda descrições das compras feitas pelo cliente
 
 public:
-    Cliente(std::string nome = "", std::string cpf = "");
-    
+    // construtor básico: cria um cliente com nome e CPF
+    Cliente(const std::string& nome, const std::string& cpf);
+
+    // adcionar os getters para retornarem os dados do cliente
     std::string getNome() const;
     std::string getCPF() const;
+    double getTotalGasto() const;
 
-    void adicionarCompra(const Produto& produto);
+    // adiciona uma nova compra ao histórico e soma ao total gasto
+    void registrarCompra(const std::string& descricao, double valor);
+
+    // mostra as compras realizadas até o momento
     void mostrarHistorico() const;
-    void salvarEmAquivo();
-    void carregarDeArquivo();
 
+    // salva e carrega histórico em arquivo (simula persistência de dados)
+    void salvarHistorico() const;
+    void carregarHistorico();
 };
 
 #endif
