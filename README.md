@@ -1,4 +1,4 @@
-# PDS2-20252-TM1-Mercado
+# PDS2-20252-TM1-Mercado 🛒
 
 Projeto desenvolvido na disciplina de *PDS2*.  
 Este repositório contém os artefatos do sistema de *Totem de Supermercado*, um sistema de autoatendimento e também de caixa para facilitar a experiência do cliente e apoiar funcionários no gerenciamento de estoque e vendas.
