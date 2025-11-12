@@ -1,0 +1,44 @@
+\doxysection{Caixa.\+hpp}
+\hypertarget{_caixa_8hpp_source}{}\label{_caixa_8hpp_source}\index{include/Caixa.hpp@{include/Caixa.hpp}}
+\mbox{\hyperlink{_caixa_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_caixa_8hpp_source_l00001}00001\ \textcolor{preprocessor}{\#ifndef\ CAIXA\_H}}
+\DoxyCodeLine{\Hypertarget{_caixa_8hpp_source_l00002}00002\ \textcolor{preprocessor}{\#define\ CAIXA\_H}}
+\DoxyCodeLine{\Hypertarget{_caixa_8hpp_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{_caixa_8hpp_source_l00004}00004\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{\Hypertarget{_caixa_8hpp_source_l00005}00005\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{\Hypertarget{_caixa_8hpp_source_l00006}00006\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{\Hypertarget{_caixa_8hpp_source_l00007}00007\ \textcolor{preprocessor}{\#include\ <map>}}
+\DoxyCodeLine{\Hypertarget{_caixa_8hpp_source_l00008}00008\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_produto_8hpp}{Produto.hpp}}"{}}}
+\DoxyCodeLine{\Hypertarget{_caixa_8hpp_source_l00009}00009\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_estoque_8hpp}{Estoque.hpp}}"{}}}
+\DoxyCodeLine{\Hypertarget{_caixa_8hpp_source_l00010}00010\ }
+\DoxyCodeLine{\Hypertarget{_caixa_8hpp_source_l00011}\mbox{\hyperlink{class_caixa}{00011}}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_caixa_a427d3bb14c150912b1586441b4818042}{Caixa}}\{}
+\DoxyCodeLine{\Hypertarget{_caixa_8hpp_source_l00012}00012\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{_caixa_8hpp_source_l00013}\mbox{\hyperlink{class_caixa_a7656686a50c5b48e89b122b71f68843e}{00013}}\ \ \ \ \ \ \ \ \ std::string\ \mbox{\hyperlink{class_caixa_a7656686a50c5b48e89b122b71f68843e}{formaPagamento}};}
+\DoxyCodeLine{\Hypertarget{_caixa_8hpp_source_l00014}\mbox{\hyperlink{class_caixa_a3e5927d155f39aa59e48826372d9be47}{00014}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_caixa_a3e5927d155f39aa59e48826372d9be47}{usuario}};}
+\DoxyCodeLine{\Hypertarget{_caixa_8hpp_source_l00015}\mbox{\hyperlink{class_caixa_a2d480de5fe9d7356e2d1773009fbc3b3}{00015}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_estoque}{Estoque}}\&\ \mbox{\hyperlink{class_caixa_a2d480de5fe9d7356e2d1773009fbc3b3}{estoque}};}
+\DoxyCodeLine{\Hypertarget{_caixa_8hpp_source_l00016}00016\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_caixa_8hpp_source_l00017}00017\ \ \ \ \ \ \ \ \ \textcolor{comment}{//carrinho:\ chave=ID\ do\ produto\ e\ valor=quantd}}
+\DoxyCodeLine{\Hypertarget{_caixa_8hpp_source_l00018}\mbox{\hyperlink{class_caixa_a1882064c0b2b04303ddf7a2f469b1eee}{00018}}\ \ \ \ \ \ \ \ \ std::map<int,\ double>\ \mbox{\hyperlink{class_caixa_a1882064c0b2b04303ddf7a2f469b1eee}{carrinho}};}
+\DoxyCodeLine{\Hypertarget{_caixa_8hpp_source_l00019}00019\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_caixa_8hpp_source_l00020}00020\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_caixa_8hpp_source_l00021}00021\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_caixa_a427d3bb14c150912b1586441b4818042}{Caixa}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_caixa_a3e5927d155f39aa59e48826372d9be47}{usuario}},\ \mbox{\hyperlink{class_estoque}{Estoque}}\ \&\mbox{\hyperlink{class_caixa_a2d480de5fe9d7356e2d1773009fbc3b3}{estoque}},\ std::string\ \mbox{\hyperlink{class_caixa_a7656686a50c5b48e89b122b71f68843e}{formaPagamento}}\ =\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{\Hypertarget{_caixa_8hpp_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{_caixa_8hpp_source_l00023}\mbox{\hyperlink{class_caixa_a3c83a69e735b33cb42b90147bf94563e}{00023}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_caixa_a3c83a69e735b33cb42b90147bf94563e}{\string~Caixa}}()\{\};}
+\DoxyCodeLine{\Hypertarget{_caixa_8hpp_source_l00024}00024\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_caixa_8hpp_source_l00025}00025\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_caixa_abf2533173ad6686503fa82694290df12}{cadastrarProduto}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_produto}{Produto}}\&\ p,\ \textcolor{keywordtype}{int}\ quantidade);}
+\DoxyCodeLine{\Hypertarget{_caixa_8hpp_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{_caixa_8hpp_source_l00027}00027\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_caixa_a2e5407ef905ec9fd8042cf9991cf90c4}{adicionarItem}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_produto}{Produto}}\&\ p,\textcolor{keywordtype}{double}\ quantidade=1);}
+\DoxyCodeLine{\Hypertarget{_caixa_8hpp_source_l00028}00028\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_caixa_ac5854eec1379fd6d4b01c57a626e6769}{removerItem}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_produto}{Produto}}\&\ p,\textcolor{keywordtype}{double}\ quantidade=1);}
+\DoxyCodeLine{\Hypertarget{_caixa_8hpp_source_l00029}00029\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_caixa_a8e7231cb6d95e4f6b520620806daeec8}{exibirTotal}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{_caixa_8hpp_source_l00030}00030\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_caixa_a5f6ce462794426f635d380ab69732db7}{calcularTroco}}(\textcolor{keywordtype}{double}\ valorPago)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{_caixa_8hpp_source_l00031}00031\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_caixa_a369711d46f2f5daefeaf66d401192cd6}{exibirCarrinho}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{_caixa_8hpp_source_l00032}00032\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_caixa_a6456142f3a0c6b51d7421dc1ed92ee66}{gerarNotaFiscal}}(\textcolor{keywordtype}{double}\ valorPago\ =\ 0.0)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{_caixa_8hpp_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{_caixa_8hpp_source_l00034}00034\ \ \ \ \ \ \ \ \ std::string\ \ \mbox{\hyperlink{class_caixa_afe0bd76d5693abeee579c4cc1c41fd39}{getFormaPagamento}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{_caixa_8hpp_source_l00035}00035\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_caixa_aa1843d8ddb407087195a6640e49b1445}{getUsuario}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{_caixa_8hpp_source_l00036}00036\ \};}
+\DoxyCodeLine{\Hypertarget{_caixa_8hpp_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{_caixa_8hpp_source_l00038}00038\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

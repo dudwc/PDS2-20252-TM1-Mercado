@@ -1,0 +1,268 @@
+\doxysection{Cliente Class Reference}
+\hypertarget{class_cliente}{}\label{class_cliente}\index{Cliente@{Cliente}}
+
+
+{\ttfamily \#include $<$Cliente.\+hpp$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_cliente_a8384cbb73f2be14da7d83f18354bb631}{Cliente}} (const std\+::string \&\mbox{\hyperlink{class_cliente_aaa79b0a26f7d5d007fe4ae9696564ca5}{nome}}, const std\+::string \&\mbox{\hyperlink{class_cliente_ae56835b8102f1ca203995bb128b3503c}{cpf}})
+\item 
+std\+::string \mbox{\hyperlink{class_cliente_abfd45b8b07a8549fe4761d00c76a43c3}{get\+Nome}} () const
+\item 
+std\+::string \mbox{\hyperlink{class_cliente_aa4787a8196c67943fceaa3685e9757a7}{get\+CPF}} () const
+\item 
+double \mbox{\hyperlink{class_cliente_af2c6ba60a215dae43471fa434166f09c}{get\+Total\+Gasto}} () const
+\item 
+void \mbox{\hyperlink{class_cliente_ae5999097c7b2ab05a825de81b8a9c23d}{registrar\+Compra}} (const std\+::string \&descricao, double valor)
+\item 
+void \mbox{\hyperlink{class_cliente_abcd2bc2509615a0350672aa42fef6fd1}{mostrar\+Historico}} () const
+\item 
+void \mbox{\hyperlink{class_cliente_afb89d22d0a2748fb05c98b03213fcb99}{salvar\+Historico}} () const
+\item 
+void \mbox{\hyperlink{class_cliente_a9d6c2933f311174338de14b1ce6534b9}{carregar\+Historico}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{class_cliente_aaa79b0a26f7d5d007fe4ae9696564ca5}{nome}}
+\item 
+std\+::string \mbox{\hyperlink{class_cliente_ae56835b8102f1ca203995bb128b3503c}{cpf}}
+\item 
+double \mbox{\hyperlink{class_cliente_aee94f740fb7b0c06bc70223d11e39345}{total\+Gasto}}
+\item 
+std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{class_cliente_a8eef5293e7133e760d575002b7e133db}{historico\+Compras}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{_cliente_8hpp_source_l00007}{7}} of file \mbox{\hyperlink{_cliente_8hpp_source}{Cliente.\+hpp}}.
+
+
+
+\label{doc-constructors}
+\Hypertarget{class_cliente_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_cliente_a8384cbb73f2be14da7d83f18354bb631}\index{Cliente@{Cliente}!Cliente@{Cliente}}
+\index{Cliente@{Cliente}!Cliente@{Cliente}}
+\doxysubsubsection{\texorpdfstring{Cliente()}{Cliente()}}
+{\footnotesize\ttfamily \label{class_cliente_a8384cbb73f2be14da7d83f18354bb631} 
+Cliente\+::\+Cliente (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{nome}{, }\item[{const std\+::string \&}]{cpf}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_cliente_8cpp_source_l00006}{6}} of file \mbox{\hyperlink{_cliente_8cpp_source}{Cliente.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00007\ \ \ \ \ :\ \mbox{\hyperlink{class_cliente_aaa79b0a26f7d5d007fe4ae9696564ca5}{nome}}(\mbox{\hyperlink{class_cliente_aaa79b0a26f7d5d007fe4ae9696564ca5}{nome}}),\ \mbox{\hyperlink{class_cliente_ae56835b8102f1ca203995bb128b3503c}{cpf}}(\mbox{\hyperlink{class_cliente_ae56835b8102f1ca203995bb128b3503c}{cpf}}),\ \mbox{\hyperlink{class_cliente_aee94f740fb7b0c06bc70223d11e39345}{totalGasto}}(0.0)\ \{\}\ \textcolor{comment}{//\ inicia\ com\ total\ gasto\ zerado}}
+
+\end{DoxyCode}
+
+
+\label{doc-func-members}
+\Hypertarget{class_cliente_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_cliente_a9d6c2933f311174338de14b1ce6534b9}\index{Cliente@{Cliente}!carregarHistorico@{carregarHistorico}}
+\index{carregarHistorico@{carregarHistorico}!Cliente@{Cliente}}
+\doxysubsubsection{\texorpdfstring{carregarHistorico()}{carregarHistorico()}}
+{\footnotesize\ttfamily \label{class_cliente_a9d6c2933f311174338de14b1ce6534b9} 
+void Cliente\+::carregar\+Historico (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_cliente_8cpp_source_l00050}{50}} of file \mbox{\hyperlink{_cliente_8cpp_source}{Cliente.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00051\ \ \ \ \ std::ifstream\ arquivo(\textcolor{stringliteral}{"{}historico\_"{}}\ +\ \mbox{\hyperlink{class_cliente_ae56835b8102f1ca203995bb128b3503c}{cpf}}\ +\ \textcolor{stringliteral}{"{}.txt"{}});}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordflow}{if}\ (!arquivo.is\_open())\ \{}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Nenhum\ histórico\ encontrado\ para\ este\ cliente.\(\backslash\)n"{}};}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00055\ \ \ \ \ \}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ std::string\ linha;}
+\DoxyCodeLine{00058\ \ \ \ \ \mbox{\hyperlink{class_cliente_a8eef5293e7133e760d575002b7e133db}{historicoCompras}}.clear();\ \textcolor{comment}{//\ limpa\ histórico\ atual\ antes\ de\ carregar}}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordflow}{while}\ (std::getline(arquivo,\ linha))\ \{}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (linha.rfind(\textcolor{stringliteral}{"{}-\/\ "{}},\ 0)\ ==\ 0)\ \{\ \textcolor{comment}{//\ se\ a\ linha\ começar\ com\ "{}-\/\ "{},\ é\ uma\ compra}}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_cliente_a8eef5293e7133e760d575002b7e133db}{historicoCompras}}.push\_back(linha.substr(2));}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00063\ \ \ \ \ \}}
+\DoxyCodeLine{00064\ \ \ \ \ arquivo.close();}
+\DoxyCodeLine{00065\ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_cliente_aa4787a8196c67943fceaa3685e9757a7}\index{Cliente@{Cliente}!getCPF@{getCPF}}
+\index{getCPF@{getCPF}!Cliente@{Cliente}}
+\doxysubsubsection{\texorpdfstring{getCPF()}{getCPF()}}
+{\footnotesize\ttfamily \label{class_cliente_aa4787a8196c67943fceaa3685e9757a7} 
+std\+::string Cliente\+::get\+CPF (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \mbox{\hyperlink{_cliente_8cpp_source_l00013}{13}} of file \mbox{\hyperlink{_cliente_8cpp_source}{Cliente.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00013\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_cliente_ae56835b8102f1ca203995bb128b3503c}{cpf}};}
+\DoxyCodeLine{00015\ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_cliente_abfd45b8b07a8549fe4761d00c76a43c3}\index{Cliente@{Cliente}!getNome@{getNome}}
+\index{getNome@{getNome}!Cliente@{Cliente}}
+\doxysubsubsection{\texorpdfstring{getNome()}{getNome()}}
+{\footnotesize\ttfamily \label{class_cliente_abfd45b8b07a8549fe4761d00c76a43c3} 
+std\+::string Cliente\+::get\+Nome (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \mbox{\hyperlink{_cliente_8cpp_source_l00009}{9}} of file \mbox{\hyperlink{_cliente_8cpp_source}{Cliente.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00009\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00010\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_cliente_aaa79b0a26f7d5d007fe4ae9696564ca5}{nome}};}
+\DoxyCodeLine{00011\ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_cliente_af2c6ba60a215dae43471fa434166f09c}\index{Cliente@{Cliente}!getTotalGasto@{getTotalGasto}}
+\index{getTotalGasto@{getTotalGasto}!Cliente@{Cliente}}
+\doxysubsubsection{\texorpdfstring{getTotalGasto()}{getTotalGasto()}}
+{\footnotesize\ttfamily \label{class_cliente_af2c6ba60a215dae43471fa434166f09c} 
+double Cliente\+::get\+Total\+Gasto (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \mbox{\hyperlink{_cliente_8cpp_source_l00017}{17}} of file \mbox{\hyperlink{_cliente_8cpp_source}{Cliente.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_cliente_aee94f740fb7b0c06bc70223d11e39345}{totalGasto}};}
+\DoxyCodeLine{00019\ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_cliente_abcd2bc2509615a0350672aa42fef6fd1}\index{Cliente@{Cliente}!mostrarHistorico@{mostrarHistorico}}
+\index{mostrarHistorico@{mostrarHistorico}!Cliente@{Cliente}}
+\doxysubsubsection{\texorpdfstring{mostrarHistorico()}{mostrarHistorico()}}
+{\footnotesize\ttfamily \label{class_cliente_abcd2bc2509615a0350672aa42fef6fd1} 
+void Cliente\+::mostrar\+Historico (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \mbox{\hyperlink{_cliente_8cpp_source_l00026}{26}} of file \mbox{\hyperlink{_cliente_8cpp_source}{Cliente.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00027\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Histórico\ de\ compras\ de\ "{}}\ <<\ \mbox{\hyperlink{class_cliente_aaa79b0a26f7d5d007fe4ae9696564ca5}{nome}}\ <<\ \textcolor{stringliteral}{"{}:\(\backslash\)n"{}};}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ item\ :\ \mbox{\hyperlink{class_cliente_a8eef5293e7133e760d575002b7e133db}{historicoCompras}})\ \{}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}-\/\ "{}}\ <<\ item\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{00030\ \ \ \ \ \}}
+\DoxyCodeLine{00031\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Total\ gasto:\ R\$\ "{}}\ <<\ std::fixed\ <<\ std::setprecision(2)\ <<\ \mbox{\hyperlink{class_cliente_aee94f740fb7b0c06bc70223d11e39345}{totalGasto}}\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{00032\ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_cliente_ae5999097c7b2ab05a825de81b8a9c23d}\index{Cliente@{Cliente}!registrarCompra@{registrarCompra}}
+\index{registrarCompra@{registrarCompra}!Cliente@{Cliente}}
+\doxysubsubsection{\texorpdfstring{registrarCompra()}{registrarCompra()}}
+{\footnotesize\ttfamily \label{class_cliente_ae5999097c7b2ab05a825de81b8a9c23d} 
+void Cliente\+::registrar\+Compra (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{descricao}{, }\item[{double}]{valor}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_cliente_8cpp_source_l00021}{21}} of file \mbox{\hyperlink{_cliente_8cpp_source}{Cliente.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00022\ \ \ \ \ \mbox{\hyperlink{class_cliente_a8eef5293e7133e760d575002b7e133db}{historicoCompras}}.push\_back(descricao);\ \textcolor{comment}{//\ guarda\ a\ descrição\ da\ compra}}
+\DoxyCodeLine{00023\ \ \ \ \ \mbox{\hyperlink{class_cliente_aee94f740fb7b0c06bc70223d11e39345}{totalGasto}}\ +=\ valor;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ soma\ o\ valor\ ao\ total}}
+\DoxyCodeLine{00024\ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_cliente_afb89d22d0a2748fb05c98b03213fcb99}\index{Cliente@{Cliente}!salvarHistorico@{salvarHistorico}}
+\index{salvarHistorico@{salvarHistorico}!Cliente@{Cliente}}
+\doxysubsubsection{\texorpdfstring{salvarHistorico()}{salvarHistorico()}}
+{\footnotesize\ttfamily \label{class_cliente_afb89d22d0a2748fb05c98b03213fcb99} 
+void Cliente\+::salvar\+Historico (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \mbox{\hyperlink{_cliente_8cpp_source_l00034}{34}} of file \mbox{\hyperlink{_cliente_8cpp_source}{Cliente.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00035\ \ \ \ \ std::ofstream\ arquivo(\textcolor{stringliteral}{"{}historico\_"{}}\ +\ \mbox{\hyperlink{class_cliente_ae56835b8102f1ca203995bb128b3503c}{cpf}}\ +\ \textcolor{stringliteral}{"{}.txt"{}});}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordflow}{if}\ (!arquivo.is\_open())\ \{}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Erro\ ao\ salvar\ histórico.\(\backslash\)n"{}};}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00039\ \ \ \ \ \}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ arquivo\ <<\ \textcolor{stringliteral}{"{}Cliente:\ "{}}\ <<\ \mbox{\hyperlink{class_cliente_aaa79b0a26f7d5d007fe4ae9696564ca5}{nome}}\ <<\ \textcolor{stringliteral}{"{}\ ("{}}\ <<\ \mbox{\hyperlink{class_cliente_ae56835b8102f1ca203995bb128b3503c}{cpf}}\ <<\ \textcolor{stringliteral}{"{})\(\backslash\)n"{}};}
+\DoxyCodeLine{00042\ \ \ \ \ arquivo\ <<\ \textcolor{stringliteral}{"{}Compras:\(\backslash\)n"{}};}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ item\ :\ \mbox{\hyperlink{class_cliente_a8eef5293e7133e760d575002b7e133db}{historicoCompras}})\ \{}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ arquivo\ <<\ \textcolor{stringliteral}{"{}-\/\ "{}}\ <<\ item\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{00045\ \ \ \ \ \}}
+\DoxyCodeLine{00046\ \ \ \ \ arquivo\ <<\ \textcolor{stringliteral}{"{}Total\ gasto:\ "{}}\ <<\ \mbox{\hyperlink{class_cliente_aee94f740fb7b0c06bc70223d11e39345}{totalGasto}}\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{00047\ \ \ \ \ arquivo.close();}
+\DoxyCodeLine{00048\ \}}
+
+\end{DoxyCode}
+
+
+\label{doc-variable-members}
+\Hypertarget{class_cliente_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_cliente_ae56835b8102f1ca203995bb128b3503c}\index{Cliente@{Cliente}!cpf@{cpf}}
+\index{cpf@{cpf}!Cliente@{Cliente}}
+\doxysubsubsection{\texorpdfstring{cpf}{cpf}}
+{\footnotesize\ttfamily \label{class_cliente_ae56835b8102f1ca203995bb128b3503c} 
+std\+::string Cliente\+::cpf\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{_cliente_8hpp_source_l00010}{10}} of file \mbox{\hyperlink{_cliente_8hpp_source}{Cliente.\+hpp}}.
+
+\Hypertarget{class_cliente_a8eef5293e7133e760d575002b7e133db}\index{Cliente@{Cliente}!historicoCompras@{historicoCompras}}
+\index{historicoCompras@{historicoCompras}!Cliente@{Cliente}}
+\doxysubsubsection{\texorpdfstring{historicoCompras}{historicoCompras}}
+{\footnotesize\ttfamily \label{class_cliente_a8eef5293e7133e760d575002b7e133db} 
+std\+::vector$<$std\+::string$>$ Cliente\+::historico\+Compras\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{_cliente_8hpp_source_l00012}{12}} of file \mbox{\hyperlink{_cliente_8hpp_source}{Cliente.\+hpp}}.
+
+\Hypertarget{class_cliente_aaa79b0a26f7d5d007fe4ae9696564ca5}\index{Cliente@{Cliente}!nome@{nome}}
+\index{nome@{nome}!Cliente@{Cliente}}
+\doxysubsubsection{\texorpdfstring{nome}{nome}}
+{\footnotesize\ttfamily \label{class_cliente_aaa79b0a26f7d5d007fe4ae9696564ca5} 
+std\+::string Cliente\+::nome\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{_cliente_8hpp_source_l00009}{9}} of file \mbox{\hyperlink{_cliente_8hpp_source}{Cliente.\+hpp}}.
+
+\Hypertarget{class_cliente_aee94f740fb7b0c06bc70223d11e39345}\index{Cliente@{Cliente}!totalGasto@{totalGasto}}
+\index{totalGasto@{totalGasto}!Cliente@{Cliente}}
+\doxysubsubsection{\texorpdfstring{totalGasto}{totalGasto}}
+{\footnotesize\ttfamily \label{class_cliente_aee94f740fb7b0c06bc70223d11e39345} 
+double Cliente\+::total\+Gasto\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{_cliente_8hpp_source_l00011}{11}} of file \mbox{\hyperlink{_cliente_8hpp_source}{Cliente.\+hpp}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{_cliente_8hpp}{Cliente.\+hpp}}\item 
+src/\mbox{\hyperlink{_cliente_8cpp}{Cliente.\+cpp}}\end{DoxyCompactItemize}

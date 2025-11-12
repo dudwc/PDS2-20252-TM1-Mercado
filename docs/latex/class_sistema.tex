@@ -1,0 +1,248 @@
+\doxysection{Sistema Class Reference}
+\hypertarget{class_sistema}{}\label{class_sistema}\index{Sistema@{Sistema}}
+
+
+{\ttfamily \#include $<$Sistema.\+hpp$>$}
+
+
+
+Collaboration diagram for Sistema\+:
+% FIG 0
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_sistema_a815b07845ef6b03247b239333fe75e28}{Sistema}} ()
+\item 
+\mbox{\hyperlink{class_sistema_aafc86e0f2c3d734fb4c0985f70c27a1a}{\texorpdfstring{$\sim$}{\string~}\+Sistema}} ()
+\item 
+void \mbox{\hyperlink{class_sistema_a5afc2279acc800dc7386e74e75477a33}{iniciar}} ()
+\item 
+void \mbox{\hyperlink{class_sistema_a3a374e41655f3a574c021a4f828ea0b6}{exibir\+Menu\+Principal}} ()
+\item 
+void \mbox{\hyperlink{class_sistema_aa5338b10dbc4d31d948d6887772f50b2}{exibir\+Logo}} ()
+\item 
+void \mbox{\hyperlink{class_sistema_a58070df145a76211910ca029c99f40f0}{print}} (std\+::string texto)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_estoque}{Estoque}} \mbox{\hyperlink{class_sistema_aea4c63d499a4be7eced0ecf0bd1293b9}{estoque}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{_sistema_8hpp_source_l00016}{16}} of file \mbox{\hyperlink{_sistema_8hpp_source}{Sistema.\+hpp}}.
+
+
+
+\label{doc-constructors}
+\Hypertarget{class_sistema_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_sistema_a815b07845ef6b03247b239333fe75e28}\index{Sistema@{Sistema}!Sistema@{Sistema}}
+\index{Sistema@{Sistema}!Sistema@{Sistema}}
+\doxysubsubsection{\texorpdfstring{Sistema()}{Sistema()}}
+{\footnotesize\ttfamily \label{class_sistema_a815b07845ef6b03247b239333fe75e28} 
+Sistema\+::\+Sistema (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{_sistema_8hpp_source_l00021}{21}} of file \mbox{\hyperlink{_sistema_8hpp_source}{Sistema.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00021\ \{\}}
+
+\end{DoxyCode}
+\Hypertarget{class_sistema_aafc86e0f2c3d734fb4c0985f70c27a1a}\index{Sistema@{Sistema}!````~Sistema@{\texorpdfstring{$\sim$}{\string~}Sistema}}
+\index{````~Sistema@{\texorpdfstring{$\sim$}{\string~}Sistema}!Sistema@{Sistema}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Sistema()}{\string~Sistema()}}
+{\footnotesize\ttfamily \label{class_sistema_aafc86e0f2c3d734fb4c0985f70c27a1a} 
+Sistema\+::\texorpdfstring{$\sim$}{\string~}\+Sistema (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{_sistema_8hpp_source_l00022}{22}} of file \mbox{\hyperlink{_sistema_8hpp_source}{Sistema.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00022\ \{\}}
+
+\end{DoxyCode}
+
+
+\label{doc-func-members}
+\Hypertarget{class_sistema_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_sistema_aa5338b10dbc4d31d948d6887772f50b2}\index{Sistema@{Sistema}!exibirLogo@{exibirLogo}}
+\index{exibirLogo@{exibirLogo}!Sistema@{Sistema}}
+\doxysubsubsection{\texorpdfstring{exibirLogo()}{exibirLogo()}}
+{\footnotesize\ttfamily \label{class_sistema_aa5338b10dbc4d31d948d6887772f50b2} 
+void Sistema\+::exibir\+Logo (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_sistema_8cpp_source_l00039}{39}} of file \mbox{\hyperlink{_sistema_8cpp_source}{Sistema.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00040\ \ \ \ \ std::ifstream\ entrada(\textcolor{stringliteral}{"{}d:/UFMG/PDS/supermercado/mercado.txt"{}});}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!entrada.is\_open())\ \{}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Erro\ ao\ abrir\ o\ arquivo\ para\ leitura."{}}\ <<\ std::endl;}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ linha;}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (std::getline(entrada,\ linha))\ \{}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ linha\ <<\ \textcolor{charliteral}{'\(\backslash\)n'};}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ entrada.close();}
+\DoxyCodeLine{00050\ \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function\+:
+% FIG 1
+\Hypertarget{class_sistema_a3a374e41655f3a574c021a4f828ea0b6}\index{Sistema@{Sistema}!exibirMenuPrincipal@{exibirMenuPrincipal}}
+\index{exibirMenuPrincipal@{exibirMenuPrincipal}!Sistema@{Sistema}}
+\doxysubsubsection{\texorpdfstring{exibirMenuPrincipal()}{exibirMenuPrincipal()}}
+{\footnotesize\ttfamily \label{class_sistema_a3a374e41655f3a574c021a4f828ea0b6} 
+void Sistema\+::exibir\+Menu\+Principal (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_sistema_8cpp_source_l00052}{52}} of file \mbox{\hyperlink{_sistema_8cpp_source}{Sistema.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordtype}{int}\ opcao;}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordflow}{while}(\textcolor{keyword}{true})\ \{}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ system(\textcolor{stringliteral}{"{}cls"{}});}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sistema_aa5338b10dbc4d31d948d6887772f50b2}{exibirLogo}}();}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sistema_a58070df145a76211910ca029c99f40f0}{print}}(\textcolor{stringliteral}{"{}\(\backslash\)n-\/-\/-\/\ Menu\ Principal\ -\/-\/-\/\(\backslash\)n"{}});}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sistema_a58070df145a76211910ca029c99f40f0}{print}}(\textcolor{stringliteral}{"{}1.\ Gerenciar\ Estoque\(\backslash\)n"{}});}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sistema_a58070df145a76211910ca029c99f40f0}{print}}(\textcolor{stringliteral}{"{}2.\ Operacoes\ de\ Caixa\(\backslash\)n"{}});}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sistema_a58070df145a76211910ca029c99f40f0}{print}}(\textcolor{stringliteral}{"{}3.\ Sair\(\backslash\)n"{}});}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sistema_a58070df145a76211910ca029c99f40f0}{print}}(\textcolor{stringliteral}{"{}Escolha\ uma\ opcao:\ "{}});}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ std::cin\ >>\ opcao;}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (opcao)\ \{}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 1:}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ system(\textcolor{stringliteral}{"{}cls"{}});}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sistema_a58070df145a76211910ca029c99f40f0}{print}}(\textcolor{stringliteral}{"{}Funcionalidade\ de\ Gerenciar\ Estoque\ ainda\ nao\ implementada.\(\backslash\)n"{}});}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sistema_a58070df145a76211910ca029c99f40f0}{print}}(\textcolor{stringliteral}{"{}1.\ Voltar\(\backslash\)n"{}});}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sistema_a58070df145a76211910ca029c99f40f0}{print}}(\textcolor{stringliteral}{"{}Escolha\ uma\ opcao:\ "{}});}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cin\ >>\ opcao;}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 2:}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ system(\textcolor{stringliteral}{"{}cls"{}});}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sistema_a58070df145a76211910ca029c99f40f0}{print}}(\textcolor{stringliteral}{"{}Funcionalidade\ de\ Operacoes\ de\ Caixa\ ainda\ nao\ implementada.\(\backslash\)n"{}});}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sistema_a58070df145a76211910ca029c99f40f0}{print}}(\textcolor{stringliteral}{"{}1.\ Voltar\(\backslash\)n"{}});}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sistema_a58070df145a76211910ca029c99f40f0}{print}}(\textcolor{stringliteral}{"{}Escolha\ uma\ opcao:\ "{}});}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cin\ >>\ opcao;}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 3:}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ system(\textcolor{stringliteral}{"{}cls"{}});}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sistema_a58070df145a76211910ca029c99f40f0}{print}}(\textcolor{stringliteral}{"{}Saindo\ do\ sistema...\(\backslash\)n"{}});}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::exit(0);}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ system(\textcolor{stringliteral}{"{}cls"{}});}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sistema_a58070df145a76211910ca029c99f40f0}{print}}(\textcolor{stringliteral}{"{}Opcao\ invalida.\ Tente\ novamente.\(\backslash\)n"{}});}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00088\ \ \ \ \ \};}
+\DoxyCodeLine{00089\ \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+% FIG 2
+Here is the caller graph for this function\+:
+% FIG 3
+\Hypertarget{class_sistema_a5afc2279acc800dc7386e74e75477a33}\index{Sistema@{Sistema}!iniciar@{iniciar}}
+\index{iniciar@{iniciar}!Sistema@{Sistema}}
+\doxysubsubsection{\texorpdfstring{iniciar()}{iniciar()}}
+{\footnotesize\ttfamily \label{class_sistema_a5afc2279acc800dc7386e74e75477a33} 
+void Sistema\+::iniciar (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_sistema_8cpp_source_l00014}{14}} of file \mbox{\hyperlink{_sistema_8cpp_source}{Sistema.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keywordtype}{int}\ c;}
+\DoxyCodeLine{00016\ \ \ \ \textcolor{keywordflow}{do}\ \{}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ system(\textcolor{stringliteral}{"{}cls"{}});}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sistema_a58070df145a76211910ca029c99f40f0}{print}}(\textcolor{stringliteral}{"{}1.\ Iniciar\ sistema\(\backslash\)n2.\ Sair\(\backslash\)nEscolha\ uma\ opcao:\ "{}});}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ std::cin\ >>\ c;}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ system(\textcolor{stringliteral}{"{}cls"{}});}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}(c)\{}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 1:\{}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sistema_a3a374e41655f3a574c021a4f828ea0b6}{exibirMenuPrincipal}}();}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};\}}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 2:}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sistema_a58070df145a76211910ca029c99f40f0}{print}}(\textcolor{stringliteral}{"{}Saindo\ do\ sistema...\(\backslash\)n"{}});}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ c\ =\ 2;\ }
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sistema_a58070df145a76211910ca029c99f40f0}{print}}(\textcolor{stringliteral}{"{}Opcao\ invalida.\ Tente\ novamente.\(\backslash\)n"{}});}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{while}(c!=2);}
+\DoxyCodeLine{00037\ \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+% FIG 4
+Here is the caller graph for this function\+:
+% FIG 5
+\Hypertarget{class_sistema_a58070df145a76211910ca029c99f40f0}\index{Sistema@{Sistema}!print@{print}}
+\index{print@{print}!Sistema@{Sistema}}
+\doxysubsubsection{\texorpdfstring{print()}{print()}}
+{\footnotesize\ttfamily \label{class_sistema_a58070df145a76211910ca029c99f40f0} 
+void Sistema\+::print (\begin{DoxyParamCaption}\item[{std\+::string}]{texto}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_sistema_8cpp_source_l00005}{5}} of file \mbox{\hyperlink{_sistema_8cpp_source}{Sistema.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00005\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00006\ \ \ \ \ \textcolor{keywordtype}{int}\ delay\_milliseconds\ =\ 1;\ \textcolor{comment}{//\ tempo\ de\ atraso\ entre\ cada\ caractere}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{char}\ c\ :\ texto)\ \{}
+\DoxyCodeLine{00009\ \ \ \ \ \ \ \ \ std::cout\ <<\ c\ <<\ std::flush;\ \textcolor{comment}{//\ imprime\ caractere\ e\ limpa\ o\ buffer}}
+\DoxyCodeLine{00010\ \ \ \ \ \ \ \ \ std::this\_thread::sleep\_for(std::chrono::milliseconds(delay\_milliseconds));\ \textcolor{comment}{//\ funcao\ de\ atraso}}
+\DoxyCodeLine{00011\ \ \ \ \ \}}
+\DoxyCodeLine{00012\ \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function\+:
+% FIG 6
+
+
+\label{doc-variable-members}
+\Hypertarget{class_sistema_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_sistema_aea4c63d499a4be7eced0ecf0bd1293b9}\index{Sistema@{Sistema}!estoque@{estoque}}
+\index{estoque@{estoque}!Sistema@{Sistema}}
+\doxysubsubsection{\texorpdfstring{estoque}{estoque}}
+{\footnotesize\ttfamily \label{class_sistema_aea4c63d499a4be7eced0ecf0bd1293b9} 
+\mbox{\hyperlink{class_estoque}{Estoque}} Sistema\+::estoque\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{_sistema_8hpp_source_l00018}{18}} of file \mbox{\hyperlink{_sistema_8hpp_source}{Sistema.\+hpp}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{_sistema_8hpp}{Sistema.\+hpp}}\item 
+src/\mbox{\hyperlink{_sistema_8cpp}{Sistema.\+cpp}}\end{DoxyCompactItemize}

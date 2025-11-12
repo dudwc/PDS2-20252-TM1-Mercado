@@ -1,0 +1,138 @@
+\doxysection{Estoque.\+cpp}
+\hypertarget{_estoque_8cpp_source}{}\label{_estoque_8cpp_source}\index{src/Estoque.cpp@{src/Estoque.cpp}}
+\mbox{\hyperlink{_estoque_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_estoque_8hpp}{..\(\backslash\)include\(\backslash\)Estoque.hpp}}"{}}}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00002}00002\ \textcolor{preprocessor}{\#include\ <iomanip>}}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00003}00003\ \textcolor{preprocessor}{\#include\ <sstream>}}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00005}\mbox{\hyperlink{class_estoque_ad459d7d644df8e6369853f7cfed57d16}{00005}}\ \mbox{\hyperlink{class_estoque_ad459d7d644df8e6369853f7cfed57d16}{Estoque::Estoque}}()\{}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00006}00006\ \ \ \ \ \mbox{\hyperlink{class_estoque_a754e2eba82358ea2a0539f4391aeec49}{arquivo}}.open(\textcolor{stringliteral}{"{}estoque.txt"{}},\ std::ios::in);}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00007}00007\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{class_estoque_a754e2eba82358ea2a0539f4391aeec49}{arquivo}}.is\_open())\ \{}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00008}00008\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Erro\ ao\ abrir\ o\ arquivo\ de\ estoque."{}}\ <<\ std::endl;}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00009}00009\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00010}00010\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00012}00012\ \ \ \ \ std::string\ linha;}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00013}00013\ \ \ \ \ \textcolor{keywordflow}{while}\ (std::getline(\mbox{\hyperlink{class_estoque_a754e2eba82358ea2a0539f4391aeec49}{arquivo}},\ linha))\ \{}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00014}00014\ \ \ \ \ \ \ \ \ std::istringstream\ iss(linha);}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00015}00015\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ id;}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00016}00016\ \ \ \ \ \ \ \ \ std::string\ nome;}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00017}00017\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ preco;}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00018}00018\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ quantidade;}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00020}00020\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!(iss\ >>\ \textcolor{keywordtype}{id}\ >>\ std::quoted(nome)\ >>\ preco\ >>\ quantidade))\ \{}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00021}00021\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Erro\ ao\ ler\ a\ linha\ do\ arquivo:\ "{}}\ <<\ linha\ <<\ std::endl;}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00022}00022\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};\ \textcolor{comment}{//\ Pula\ para\ a\ próxima\ linha\ em\ caso\ de\ erro}}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00023}00023\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00025}00025\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_produto}{Produto}}\ produto(nome,\ preco,\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00026}00026\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_estoque_a4b6a7d5adfa2bcd626c72239ac4f3f17}{produtos}}[produto]\ =\ quantidade;}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00027}00027\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00029}00029\ \ \ \ \ \mbox{\hyperlink{class_estoque_a754e2eba82358ea2a0539f4391aeec49}{arquivo}}.close();}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00030}00030\ \}}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00032}\mbox{\hyperlink{class_estoque_abe620310692f09e4e44c1008ed9ec616}{00032}}\ \mbox{\hyperlink{class_estoque_ad459d7d644df8e6369853f7cfed57d16}{Estoque::Estoque}}(\textcolor{keyword}{const}\ std::map<Produto,\ int>\&\ \mbox{\hyperlink{class_estoque_a4b6a7d5adfa2bcd626c72239ac4f3f17}{produtos}})\ :\ }
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00033}00033\ \ \ \ \ \mbox{\hyperlink{class_estoque_a4b6a7d5adfa2bcd626c72239ac4f3f17}{produtos}}(\mbox{\hyperlink{class_estoque_a4b6a7d5adfa2bcd626c72239ac4f3f17}{produtos}})\ \{}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00034}00034\ \ \ \ \ \mbox{\hyperlink{class_estoque_a754e2eba82358ea2a0539f4391aeec49}{arquivo}}.open(\textcolor{stringliteral}{"{}estoque.txt"{}},\ std::ios::out\ |\ std::ios::trunc);}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00035}00035\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{class_estoque_a754e2eba82358ea2a0539f4391aeec49}{arquivo}}.is\_open())\ \{}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00036}00036\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Erro\ ao\ abrir\ o\ arquivo\ de\ estoque\ para\ escrita."{}}\ <<\ std::endl;}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00037}00037\ \ \ \ \ \ \ \ \ return;}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00038}00038\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00039}00039\ }
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00040}00040\ \ \ \ \ for\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ produto\ :\ \mbox{\hyperlink{class_estoque_a4b6a7d5adfa2bcd626c72239ac4f3f17}{produtos}})\ \{}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00041}00041\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_estoque_a754e2eba82358ea2a0539f4391aeec49}{arquivo}}\ <<\ produto.first.getID()\ <<\ \textcolor{stringliteral}{"{}\ "{}}\ }
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00042}00042\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ std::quoted(produto.first.getName())\ <<\ \textcolor{stringliteral}{"{}\ "{}}\ }
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00043}00043\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ std::fixed\ <<\ std::setprecision(2)\ <<\ produto.first.getPreco()\ <<\ \textcolor{stringliteral}{"{}\ "{}}}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00044}00044\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ produto.second\ <<\ \textcolor{stringliteral}{"{}unidades"{}}}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00045}00045\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ std::endl;}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00046}00046\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00048}00048\ \ \ \ \ \mbox{\hyperlink{class_estoque_a754e2eba82358ea2a0539f4391aeec49}{arquivo}}.close();}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00049}00049\ \}}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00050}00050\ }
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00051}\mbox{\hyperlink{class_estoque_acb5bda4855d5a0431327813c73144374}{00051}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_estoque_acb5bda4855d5a0431327813c73144374}{Estoque::adicionarProduto}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_produto}{Produto}}\&\ produto,\ \textcolor{keywordtype}{int}\ qtd)\ \{}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00052}00052\ \ \ \ \ \mbox{\hyperlink{class_estoque_a4b6a7d5adfa2bcd626c72239ac4f3f17}{produtos}}[produto]\ +=\ qtd;}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00053}00053\ \ \ \ \ \mbox{\hyperlink{class_estoque_a754e2eba82358ea2a0539f4391aeec49}{arquivo}}.open(\textcolor{stringliteral}{"{}estoque.txt"{}},\ std::ios::out\ |\ std::ios::trunc);}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00054}00054\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{class_estoque_a754e2eba82358ea2a0539f4391aeec49}{arquivo}}.is\_open())\ \{}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00055}00055\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Erro\ ao\ abrir\ o\ arquivo."{}}\ <<\ std::endl;}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00056}00056\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00057}00057\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00058}00058\ }
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00059}00059\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ p\ :\ \mbox{\hyperlink{class_estoque_a4b6a7d5adfa2bcd626c72239ac4f3f17}{produtos}})\ \{}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00060}00060\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_estoque_a754e2eba82358ea2a0539f4391aeec49}{arquivo}}\ <<\ p.first.getID()\ <<\ \textcolor{stringliteral}{"{}\ "{}}\ }
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ std::quoted(p.first.getName())\ <<\ \textcolor{stringliteral}{"{}\ "{}}\ }
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00062}00062\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ std::fixed\ <<\ std::setprecision(2)\ <<\ p.first.getPreco()\ <<\ \textcolor{stringliteral}{"{}\ "{}}}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00063}00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ p.second\ <<\ \textcolor{stringliteral}{"{}unidades"{}}}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00064}00064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ std::endl;}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00065}00065\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00066}00066\ }
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00067}00067\ \ \ \ \ \mbox{\hyperlink{class_estoque_a754e2eba82358ea2a0539f4391aeec49}{arquivo}}.close();}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00068}00068\ \}}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00069}00069\ }
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00070}\mbox{\hyperlink{class_estoque_a14f6e03a0a3c1701905786cdc4afba99}{00070}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_estoque_a14f6e03a0a3c1701905786cdc4afba99}{Estoque::removerProduto}}(\textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id},\ \textcolor{keywordtype}{int}\ qtd)\{}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00071}00071\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ it\ =\ \mbox{\hyperlink{class_estoque_a4b6a7d5adfa2bcd626c72239ac4f3f17}{produtos}}.begin();\ it\ !=\ \mbox{\hyperlink{class_estoque_a4b6a7d5adfa2bcd626c72239ac4f3f17}{produtos}}.end();\ ++it)\ \{}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00072}00072\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (it-\/>first.getID()\ ==\ \textcolor{keywordtype}{id})\ \{}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00073}00073\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (it-\/>second\ >=\ qtd)\ \{}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00074}00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ it-\/>second\ -\/=\ qtd;}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00075}00075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (it-\/>second\ ==\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00076}00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_estoque_a4b6a7d5adfa2bcd626c72239ac4f3f17}{produtos}}.erase(it);}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00077}00077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00078}00078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_estoque_a754e2eba82358ea2a0539f4391aeec49}{arquivo}}.open(\textcolor{stringliteral}{"{}estoque.txt"{}},\ std::ios::out\ |\ std::ios::trunc);}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00079}00079\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{class_estoque_a754e2eba82358ea2a0539f4391aeec49}{arquivo}}.is\_open())\ \{}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00080}00080\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Erro\ ao\ abrir\ o\ arquivo."{}}\ <<\ std::endl;}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00081}00081\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00082}00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00083}00083\ }
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00084}00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ p\ :\ \mbox{\hyperlink{class_estoque_a4b6a7d5adfa2bcd626c72239ac4f3f17}{produtos}})\ \{}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00085}00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_estoque_a754e2eba82358ea2a0539f4391aeec49}{arquivo}}\ <<\ p.first.getID()\ <<\ \textcolor{stringliteral}{"{}\ "{}}\ }
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00086}00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ std::quoted(p.first.getName())\ <<\ \textcolor{stringliteral}{"{}\ "{}}\ }
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ std::fixed\ <<\ std::setprecision(2)\ <<\ p.first.getPreco()\ <<\ \textcolor{stringliteral}{"{}\ "{}}}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00088}00088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ p.second\ <<\ \textcolor{stringliteral}{"{}unidades"{}}}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00089}00089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ std::endl;}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00091}00091\ }
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_estoque_a754e2eba82358ea2a0539f4391aeec49}{arquivo}}.close();}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00095}00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Quantidade\ insuficiente\ em\ estoque."{}}\ <<\ std::endl;}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00096}00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00097}00097\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00098}00098\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00099}00099\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00100}00100\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Produto\ com\ ID\ "{}}\ <<\ \textcolor{keywordtype}{id}\ <<\ \textcolor{stringliteral}{"{}\ nao\ encontrado."{}}\ <<\ std::endl;}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00101}00101\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00102}00102\ \}}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00103}00103\ }
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00104}\mbox{\hyperlink{class_estoque_a0c93b44245eab1a8081a55e93b91481c}{00104}}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_produto}{Produto}}*\ \mbox{\hyperlink{class_estoque_a0c93b44245eab1a8081a55e93b91481c}{Estoque::buscarID}}(\textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id})\{}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00105}00105\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ pair\ :\ \mbox{\hyperlink{class_estoque_a4b6a7d5adfa2bcd626c72239ac4f3f17}{produtos}})\ \{}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00106}00106\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pair.first.getID()\ ==\ \textcolor{keywordtype}{id})\ \{}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00107}00107\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \&(pair.first);}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00108}00108\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00109}00109\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00110}00110\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00111}00111\ \}}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00112}00112\ }
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00113}\mbox{\hyperlink{class_estoque_aac4d1f8df78bad0de3bf08a46290b675}{00113}}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_produto}{Produto}}*\ \mbox{\hyperlink{class_estoque_aac4d1f8df78bad0de3bf08a46290b675}{Estoque::buscarNome}}(\textcolor{keyword}{const}\ std::string\&\ nome)\{}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00114}00114\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ pair\ :\ \mbox{\hyperlink{class_estoque_a4b6a7d5adfa2bcd626c72239ac4f3f17}{produtos}})\{}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00115}00115\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pair.first.getName()\ ==\ nome)\{}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00116}00116\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \&(pair.first);}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00117}00117\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00118}00118\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00119}00119\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00120}00120\ \}}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00121}00121\ }
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00122}\mbox{\hyperlink{class_estoque_a73a0e69d50fc5751106d231bd549ed4e}{00122}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_estoque_a73a0e69d50fc5751106d231bd549ed4e}{Estoque::listarProdutos}}()\textcolor{keyword}{\ const}\{}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00123}00123\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Produtos\ em\ estoque:\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00124}00124\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ pair\ :\ \mbox{\hyperlink{class_estoque_a4b6a7d5adfa2bcd626c72239ac4f3f17}{produtos}})\ \{}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00125}00125\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_produto}{Produto}}\&\ produto\ =\ pair.first;}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00126}00126\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ quantidade\ =\ pair.second;}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00127}00127\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}ID:\ "{}}\ <<\ produto.\mbox{\hyperlink{class_produto_acbbaf1914697df5d33111575099165c3}{getID}}()\ }
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00128}00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{},\ Nome:\ "{}}\ <<\ produto.\mbox{\hyperlink{class_produto_ac107e573e72ad68558a91505a5ec29cb}{getName}}()\ }
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00129}00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{},\ Preco:\ "{}}\ <<\ \mbox{\hyperlink{class_produto_a02d3b219853bec813641d34db5ca987e}{Produto::formatPreco}}(produto.\mbox{\hyperlink{class_produto_ace1d384192a7f2cfc7768afa6b7fcbf5}{getPreco}}())\ }
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00130}00130\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{},\ Quantidade:\ "{}}\ <<\ quantidade\ <<\ std::endl;}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00131}00131\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_estoque_8cpp_source_l00132}00132\ \}}
+
+\end{DoxyCode}

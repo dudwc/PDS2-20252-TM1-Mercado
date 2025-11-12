@@ -1,0 +1,40 @@
+\doxysection{Cliente.\+hpp}
+\hypertarget{_cliente_8hpp_source}{}\label{_cliente_8hpp_source}\index{include/Cliente.hpp@{include/Cliente.hpp}}
+\mbox{\hyperlink{_cliente_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_cliente_8hpp_source_l00001}00001\ \textcolor{preprocessor}{\#ifndef\ CLIENTE\_HPP}}
+\DoxyCodeLine{\Hypertarget{_cliente_8hpp_source_l00002}00002\ \textcolor{preprocessor}{\#define\ CLIENTE\_HPP}}
+\DoxyCodeLine{\Hypertarget{_cliente_8hpp_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{_cliente_8hpp_source_l00004}00004\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{\Hypertarget{_cliente_8hpp_source_l00005}00005\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{\Hypertarget{_cliente_8hpp_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{_cliente_8hpp_source_l00007}\mbox{\hyperlink{class_cliente}{00007}}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_cliente_a8384cbb73f2be14da7d83f18354bb631}{Cliente}}\ \{}
+\DoxyCodeLine{\Hypertarget{_cliente_8hpp_source_l00008}00008\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{_cliente_8hpp_source_l00009}\mbox{\hyperlink{class_cliente_aaa79b0a26f7d5d007fe4ae9696564ca5}{00009}}\ \ \ \ \ std::string\ \mbox{\hyperlink{class_cliente_aaa79b0a26f7d5d007fe4ae9696564ca5}{nome}};}
+\DoxyCodeLine{\Hypertarget{_cliente_8hpp_source_l00010}\mbox{\hyperlink{class_cliente_ae56835b8102f1ca203995bb128b3503c}{00010}}\ \ \ \ \ std::string\ \mbox{\hyperlink{class_cliente_ae56835b8102f1ca203995bb128b3503c}{cpf}};}
+\DoxyCodeLine{\Hypertarget{_cliente_8hpp_source_l00011}\mbox{\hyperlink{class_cliente_aee94f740fb7b0c06bc70223d11e39345}{00011}}\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_cliente_aee94f740fb7b0c06bc70223d11e39345}{totalGasto}};}
+\DoxyCodeLine{\Hypertarget{_cliente_8hpp_source_l00012}\mbox{\hyperlink{class_cliente_a8eef5293e7133e760d575002b7e133db}{00012}}\ \ \ \ \ std::vector<std::string>\ \mbox{\hyperlink{class_cliente_a8eef5293e7133e760d575002b7e133db}{historicoCompras}};\ \textcolor{comment}{//\ guarda\ descrições\ das\ compras\ feitas\ pelo\ cliente}}
+\DoxyCodeLine{\Hypertarget{_cliente_8hpp_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{_cliente_8hpp_source_l00014}00014\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_cliente_8hpp_source_l00015}00015\ \ \ \ \ \textcolor{comment}{//\ construtor\ básico:\ cria\ um\ cliente\ com\ nome\ e\ CPF}}
+\DoxyCodeLine{\Hypertarget{_cliente_8hpp_source_l00016}00016\ \ \ \ \ \mbox{\hyperlink{class_cliente_a8384cbb73f2be14da7d83f18354bb631}{Cliente}}(\textcolor{keyword}{const}\ std::string\&\ \mbox{\hyperlink{class_cliente_aaa79b0a26f7d5d007fe4ae9696564ca5}{nome}},\ \textcolor{keyword}{const}\ std::string\&\ \mbox{\hyperlink{class_cliente_ae56835b8102f1ca203995bb128b3503c}{cpf}});}
+\DoxyCodeLine{\Hypertarget{_cliente_8hpp_source_l00017}00017\ }
+\DoxyCodeLine{\Hypertarget{_cliente_8hpp_source_l00018}00018\ \ \ \ \ \textcolor{comment}{//\ adcionar\ os\ getters\ para\ retornarem\ os\ dados\ do\ cliente}}
+\DoxyCodeLine{\Hypertarget{_cliente_8hpp_source_l00019}00019\ \ \ \ \ std::string\ \mbox{\hyperlink{class_cliente_abfd45b8b07a8549fe4761d00c76a43c3}{getNome}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{_cliente_8hpp_source_l00020}00020\ \ \ \ \ std::string\ \mbox{\hyperlink{class_cliente_aa4787a8196c67943fceaa3685e9757a7}{getCPF}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{_cliente_8hpp_source_l00021}00021\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_cliente_af2c6ba60a215dae43471fa434166f09c}{getTotalGasto}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{_cliente_8hpp_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{_cliente_8hpp_source_l00023}00023\ \ \ \ \ \textcolor{comment}{//\ adiciona\ uma\ nova\ compra\ ao\ histórico\ e\ soma\ ao\ total\ gasto}}
+\DoxyCodeLine{\Hypertarget{_cliente_8hpp_source_l00024}00024\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_cliente_ae5999097c7b2ab05a825de81b8a9c23d}{registrarCompra}}(\textcolor{keyword}{const}\ std::string\&\ descricao,\ \textcolor{keywordtype}{double}\ valor);}
+\DoxyCodeLine{\Hypertarget{_cliente_8hpp_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{_cliente_8hpp_source_l00026}00026\ \ \ \ \ \textcolor{comment}{//\ mostra\ as\ compras\ realizadas\ até\ o\ momento}}
+\DoxyCodeLine{\Hypertarget{_cliente_8hpp_source_l00027}00027\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_cliente_abcd2bc2509615a0350672aa42fef6fd1}{mostrarHistorico}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{_cliente_8hpp_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{_cliente_8hpp_source_l00029}00029\ \ \ \ \ \textcolor{comment}{//\ salva\ e\ carrega\ histórico\ em\ arquivo\ (simula\ persistência\ de\ dados)}}
+\DoxyCodeLine{\Hypertarget{_cliente_8hpp_source_l00030}00030\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_cliente_afb89d22d0a2748fb05c98b03213fcb99}{salvarHistorico}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{_cliente_8hpp_source_l00031}00031\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_cliente_a9d6c2933f311174338de14b1ce6534b9}{carregarHistorico}}();}
+\DoxyCodeLine{\Hypertarget{_cliente_8hpp_source_l00032}00032\ \};}
+\DoxyCodeLine{\Hypertarget{_cliente_8hpp_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{_cliente_8hpp_source_l00034}00034\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

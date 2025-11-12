@@ -1,0 +1,317 @@
+\doxysection{Estoque Class Reference}
+\hypertarget{class_estoque}{}\label{class_estoque}\index{Estoque@{Estoque}}
+
+
+{\ttfamily \#include $<$Estoque.\+hpp$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_estoque_ad459d7d644df8e6369853f7cfed57d16}{Estoque}} ()
+\item 
+\mbox{\hyperlink{class_estoque_abe620310692f09e4e44c1008ed9ec616}{Estoque}} (const std\+::map$<$ \mbox{\hyperlink{class_produto}{Produto}}, int $>$ \&\mbox{\hyperlink{class_estoque_a4b6a7d5adfa2bcd626c72239ac4f3f17}{produtos}})
+\item 
+\mbox{\hyperlink{class_estoque_a99c7f0dc2b6fa9950ad25b0071b9cb9b}{\texorpdfstring{$\sim$}{\string~}\+Estoque}} ()
+\item 
+void \mbox{\hyperlink{class_estoque_acb5bda4855d5a0431327813c73144374}{adicionar\+Produto}} (const \mbox{\hyperlink{class_produto}{Produto}} \&produto, int qtd)
+\item 
+bool \mbox{\hyperlink{class_estoque_a14f6e03a0a3c1701905786cdc4afba99}{remover\+Produto}} (int id, int qtd)
+\item 
+const \mbox{\hyperlink{class_produto}{Produto}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_estoque_a0c93b44245eab1a8081a55e93b91481c}{buscar\+ID}} (int id)
+\item 
+const \mbox{\hyperlink{class_produto}{Produto}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_estoque_aac4d1f8df78bad0de3bf08a46290b675}{buscar\+Nome}} (const std\+::string \&nome)
+\item 
+void \mbox{\hyperlink{class_estoque_a73a0e69d50fc5751106d231bd549ed4e}{listar\+Produtos}} () const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::map$<$ \mbox{\hyperlink{class_produto}{Produto}}, int $>$ \mbox{\hyperlink{class_estoque_a4b6a7d5adfa2bcd626c72239ac4f3f17}{produtos}}
+\item 
+std\+::fstream \mbox{\hyperlink{class_estoque_a754e2eba82358ea2a0539f4391aeec49}{arquivo}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{_estoque_8hpp_source_l00009}{9}} of file \mbox{\hyperlink{_estoque_8hpp_source}{Estoque.\+hpp}}.
+
+
+
+\label{doc-constructors}
+\Hypertarget{class_estoque_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_estoque_ad459d7d644df8e6369853f7cfed57d16}\index{Estoque@{Estoque}!Estoque@{Estoque}}
+\index{Estoque@{Estoque}!Estoque@{Estoque}}
+\doxysubsubsection{\texorpdfstring{Estoque()}{Estoque()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_estoque_ad459d7d644df8e6369853f7cfed57d16} 
+Estoque\+::\+Estoque (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_estoque_8cpp_source_l00005}{5}} of file \mbox{\hyperlink{_estoque_8cpp_source}{Estoque.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00005\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00006\ \ \ \ \ \mbox{\hyperlink{class_estoque_a754e2eba82358ea2a0539f4391aeec49}{arquivo}}.open(\textcolor{stringliteral}{"{}estoque.txt"{}},\ std::ios::in);}
+\DoxyCodeLine{00007\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{class_estoque_a754e2eba82358ea2a0539f4391aeec49}{arquivo}}.is\_open())\ \{}
+\DoxyCodeLine{00008\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Erro\ ao\ abrir\ o\ arquivo\ de\ estoque."{}}\ <<\ std::endl;}
+\DoxyCodeLine{00009\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00010\ \ \ \ \ \}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \ \ \ \ std::string\ linha;}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keywordflow}{while}\ (std::getline(\mbox{\hyperlink{class_estoque_a754e2eba82358ea2a0539f4391aeec49}{arquivo}},\ linha))\ \{}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ std::istringstream\ iss(linha);}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ id;}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ std::string\ nome;}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ preco;}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ quantidade;}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!(iss\ >>\ \textcolor{keywordtype}{id}\ >>\ std::quoted(nome)\ >>\ preco\ >>\ quantidade))\ \{}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Erro\ ao\ ler\ a\ linha\ do\ arquivo:\ "{}}\ <<\ linha\ <<\ std::endl;}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};\ \textcolor{comment}{//\ Pula\ para\ a\ próxima\ linha\ em\ caso\ de\ erro}}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ Produto\ produto(nome,\ preco,\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_estoque_a4b6a7d5adfa2bcd626c72239ac4f3f17}{produtos}}[produto]\ =\ quantidade;}
+\DoxyCodeLine{00027\ \ \ \ \ \}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ \mbox{\hyperlink{class_estoque_a754e2eba82358ea2a0539f4391aeec49}{arquivo}}.close();}
+\DoxyCodeLine{00030\ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_estoque_abe620310692f09e4e44c1008ed9ec616}\index{Estoque@{Estoque}!Estoque@{Estoque}}
+\index{Estoque@{Estoque}!Estoque@{Estoque}}
+\doxysubsubsection{\texorpdfstring{Estoque()}{Estoque()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_estoque_abe620310692f09e4e44c1008ed9ec616} 
+Estoque\+::\+Estoque (\begin{DoxyParamCaption}\item[{const std\+::map$<$ \mbox{\hyperlink{class_produto}{Produto}}, int $>$ \&}]{produtos}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_estoque_8cpp_source_l00032}{32}} of file \mbox{\hyperlink{_estoque_8cpp_source}{Estoque.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ }
+\DoxyCodeLine{00033\ \ \ \ \ \mbox{\hyperlink{class_estoque_a4b6a7d5adfa2bcd626c72239ac4f3f17}{produtos}}(\mbox{\hyperlink{class_estoque_a4b6a7d5adfa2bcd626c72239ac4f3f17}{produtos}})\ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \mbox{\hyperlink{class_estoque_a754e2eba82358ea2a0539f4391aeec49}{arquivo}}.open(\textcolor{stringliteral}{"{}estoque.txt"{}},\ std::ios::out\ |\ std::ios::trunc);}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{class_estoque_a754e2eba82358ea2a0539f4391aeec49}{arquivo}}.is\_open())\ \{}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Erro\ ao\ abrir\ o\ arquivo\ de\ estoque\ para\ escrita."{}}\ <<\ std::endl;}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00038\ \ \ \ \ \}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ produto\ :\ \mbox{\hyperlink{class_estoque_a4b6a7d5adfa2bcd626c72239ac4f3f17}{produtos}})\ \{}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_estoque_a754e2eba82358ea2a0539f4391aeec49}{arquivo}}\ <<\ produto.first.getID()\ <<\ \textcolor{stringliteral}{"{}\ "{}}\ }
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ std::quoted(produto.first.getName())\ <<\ \textcolor{stringliteral}{"{}\ "{}}\ }
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ std::fixed\ <<\ std::setprecision(2)\ <<\ produto.first.getPreco()\ <<\ \textcolor{stringliteral}{"{}\ "{}}}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ produto.second\ <<\ \textcolor{stringliteral}{"{}unidades"{}}}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ std::endl;}
+\DoxyCodeLine{00046\ \ \ \ \ \}}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ \mbox{\hyperlink{class_estoque_a754e2eba82358ea2a0539f4391aeec49}{arquivo}}.close();}
+\DoxyCodeLine{00049\ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_estoque_a99c7f0dc2b6fa9950ad25b0071b9cb9b}\index{Estoque@{Estoque}!````~Estoque@{\texorpdfstring{$\sim$}{\string~}Estoque}}
+\index{````~Estoque@{\texorpdfstring{$\sim$}{\string~}Estoque}!Estoque@{Estoque}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Estoque()}{\string~Estoque()}}
+{\footnotesize\ttfamily \label{class_estoque_a99c7f0dc2b6fa9950ad25b0071b9cb9b} 
+Estoque\+::\texorpdfstring{$\sim$}{\string~}\+Estoque (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{_estoque_8hpp_source_l00016}{16}} of file \mbox{\hyperlink{_estoque_8hpp_source}{Estoque.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00016\ \{\};}
+
+\end{DoxyCode}
+
+
+\label{doc-func-members}
+\Hypertarget{class_estoque_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_estoque_acb5bda4855d5a0431327813c73144374}\index{Estoque@{Estoque}!adicionarProduto@{adicionarProduto}}
+\index{adicionarProduto@{adicionarProduto}!Estoque@{Estoque}}
+\doxysubsubsection{\texorpdfstring{adicionarProduto()}{adicionarProduto()}}
+{\footnotesize\ttfamily \label{class_estoque_acb5bda4855d5a0431327813c73144374} 
+void Estoque\+::adicionar\+Produto (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_produto}{Produto}} \&}]{produto}{, }\item[{int}]{qtd}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_estoque_8cpp_source_l00051}{51}} of file \mbox{\hyperlink{_estoque_8cpp_source}{Estoque.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00052\ \ \ \ \ \mbox{\hyperlink{class_estoque_a4b6a7d5adfa2bcd626c72239ac4f3f17}{produtos}}[produto]\ +=\ qtd;}
+\DoxyCodeLine{00053\ \ \ \ \ \mbox{\hyperlink{class_estoque_a754e2eba82358ea2a0539f4391aeec49}{arquivo}}.open(\textcolor{stringliteral}{"{}estoque.txt"{}},\ std::ios::out\ |\ std::ios::trunc);}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{class_estoque_a754e2eba82358ea2a0539f4391aeec49}{arquivo}}.is\_open())\ \{}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Erro\ ao\ abrir\ o\ arquivo."{}}\ <<\ std::endl;}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00057\ \ \ \ \ \}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ p\ :\ \mbox{\hyperlink{class_estoque_a4b6a7d5adfa2bcd626c72239ac4f3f17}{produtos}})\ \{}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_estoque_a754e2eba82358ea2a0539f4391aeec49}{arquivo}}\ <<\ p.first.getID()\ <<\ \textcolor{stringliteral}{"{}\ "{}}\ }
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ std::quoted(p.first.getName())\ <<\ \textcolor{stringliteral}{"{}\ "{}}\ }
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ std::fixed\ <<\ std::setprecision(2)\ <<\ p.first.getPreco()\ <<\ \textcolor{stringliteral}{"{}\ "{}}}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ p.second\ <<\ \textcolor{stringliteral}{"{}unidades"{}}}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ std::endl;}
+\DoxyCodeLine{00065\ \ \ \ \ \}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \ \ \mbox{\hyperlink{class_estoque_a754e2eba82358ea2a0539f4391aeec49}{arquivo}}.close();}
+\DoxyCodeLine{00068\ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_estoque_a0c93b44245eab1a8081a55e93b91481c}\index{Estoque@{Estoque}!buscarID@{buscarID}}
+\index{buscarID@{buscarID}!Estoque@{Estoque}}
+\doxysubsubsection{\texorpdfstring{buscarID()}{buscarID()}}
+{\footnotesize\ttfamily \label{class_estoque_a0c93b44245eab1a8081a55e93b91481c} 
+const \mbox{\hyperlink{class_produto}{Produto}} \texorpdfstring{$\ast$}{*} Estoque\+::buscar\+ID (\begin{DoxyParamCaption}\item[{int}]{id}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_estoque_8cpp_source_l00104}{104}} of file \mbox{\hyperlink{_estoque_8cpp_source}{Estoque.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ pair\ :\ \mbox{\hyperlink{class_estoque_a4b6a7d5adfa2bcd626c72239ac4f3f17}{produtos}})\ \{}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pair.first.getID()\ ==\ \textcolor{keywordtype}{id})\ \{}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \&(pair.first);}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00109\ \ \ \ \ \}}
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00111\ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_estoque_aac4d1f8df78bad0de3bf08a46290b675}\index{Estoque@{Estoque}!buscarNome@{buscarNome}}
+\index{buscarNome@{buscarNome}!Estoque@{Estoque}}
+\doxysubsubsection{\texorpdfstring{buscarNome()}{buscarNome()}}
+{\footnotesize\ttfamily \label{class_estoque_aac4d1f8df78bad0de3bf08a46290b675} 
+const \mbox{\hyperlink{class_produto}{Produto}} \texorpdfstring{$\ast$}{*} Estoque\+::buscar\+Nome (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{nome}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_estoque_8cpp_source_l00113}{113}} of file \mbox{\hyperlink{_estoque_8cpp_source}{Estoque.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ pair\ :\ \mbox{\hyperlink{class_estoque_a4b6a7d5adfa2bcd626c72239ac4f3f17}{produtos}})\{}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pair.first.getName()\ ==\ nome)\{}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \&(pair.first);}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00118\ \ \ \ \ \}}
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00120\ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_estoque_a73a0e69d50fc5751106d231bd549ed4e}\index{Estoque@{Estoque}!listarProdutos@{listarProdutos}}
+\index{listarProdutos@{listarProdutos}!Estoque@{Estoque}}
+\doxysubsubsection{\texorpdfstring{listarProdutos()}{listarProdutos()}}
+{\footnotesize\ttfamily \label{class_estoque_a73a0e69d50fc5751106d231bd549ed4e} 
+void Estoque\+::listar\+Produtos (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \mbox{\hyperlink{_estoque_8cpp_source_l00122}{122}} of file \mbox{\hyperlink{_estoque_8cpp_source}{Estoque.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00123\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Produtos\ em\ estoque:\(\backslash\)n"{}};}
+\DoxyCodeLine{00124\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ pair\ :\ \mbox{\hyperlink{class_estoque_a4b6a7d5adfa2bcd626c72239ac4f3f17}{produtos}})\ \{}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Produto\&\ produto\ =\ pair.first;}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ quantidade\ =\ pair.second;}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}ID:\ "{}}\ <<\ produto.\mbox{\hyperlink{class_produto_acbbaf1914697df5d33111575099165c3}{getID}}()\ }
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{},\ Nome:\ "{}}\ <<\ produto.\mbox{\hyperlink{class_produto_ac107e573e72ad68558a91505a5ec29cb}{getName}}()\ }
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{},\ Preco:\ "{}}\ <<\ \mbox{\hyperlink{class_produto_a02d3b219853bec813641d34db5ca987e}{Produto::formatPreco}}(produto.\mbox{\hyperlink{class_produto_ace1d384192a7f2cfc7768afa6b7fcbf5}{getPreco}}())\ }
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{},\ Quantidade:\ "{}}\ <<\ quantidade\ <<\ std::endl;}
+\DoxyCodeLine{00131\ \ \ \ \ \}}
+\DoxyCodeLine{00132\ \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+% FIG 0
+\Hypertarget{class_estoque_a14f6e03a0a3c1701905786cdc4afba99}\index{Estoque@{Estoque}!removerProduto@{removerProduto}}
+\index{removerProduto@{removerProduto}!Estoque@{Estoque}}
+\doxysubsubsection{\texorpdfstring{removerProduto()}{removerProduto()}}
+{\footnotesize\ttfamily \label{class_estoque_a14f6e03a0a3c1701905786cdc4afba99} 
+bool Estoque\+::remover\+Produto (\begin{DoxyParamCaption}\item[{int}]{id}{, }\item[{int}]{qtd}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_estoque_8cpp_source_l00070}{70}} of file \mbox{\hyperlink{_estoque_8cpp_source}{Estoque.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ it\ =\ \mbox{\hyperlink{class_estoque_a4b6a7d5adfa2bcd626c72239ac4f3f17}{produtos}}.begin();\ it\ !=\ \mbox{\hyperlink{class_estoque_a4b6a7d5adfa2bcd626c72239ac4f3f17}{produtos}}.end();\ ++it)\ \{}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (it-\/>first.getID()\ ==\ \textcolor{keywordtype}{id})\ \{}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (it-\/>second\ >=\ qtd)\ \{}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ it-\/>second\ -\/=\ qtd;}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (it-\/>second\ ==\ 0)\ \{}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_estoque_a4b6a7d5adfa2bcd626c72239ac4f3f17}{produtos}}.erase(it);}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_estoque_a754e2eba82358ea2a0539f4391aeec49}{arquivo}}.open(\textcolor{stringliteral}{"{}estoque.txt"{}},\ std::ios::out\ |\ std::ios::trunc);}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{class_estoque_a754e2eba82358ea2a0539f4391aeec49}{arquivo}}.is\_open())\ \{}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Erro\ ao\ abrir\ o\ arquivo."{}}\ <<\ std::endl;}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ p\ :\ \mbox{\hyperlink{class_estoque_a4b6a7d5adfa2bcd626c72239ac4f3f17}{produtos}})\ \{}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_estoque_a754e2eba82358ea2a0539f4391aeec49}{arquivo}}\ <<\ p.first.getID()\ <<\ \textcolor{stringliteral}{"{}\ "{}}\ }
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ std::quoted(p.first.getName())\ <<\ \textcolor{stringliteral}{"{}\ "{}}\ }
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ std::fixed\ <<\ std::setprecision(2)\ <<\ p.first.getPreco()\ <<\ \textcolor{stringliteral}{"{}\ "{}}}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ p.second\ <<\ \textcolor{stringliteral}{"{}unidades"{}}}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ std::endl;}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_estoque_a754e2eba82358ea2a0539f4391aeec49}{arquivo}}.close();}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Quantidade\ insuficiente\ em\ estoque."{}}\ <<\ std::endl;}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00099\ \ \ \ \ \}}
+\DoxyCodeLine{00100\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Produto\ com\ ID\ "{}}\ <<\ \textcolor{keywordtype}{id}\ <<\ \textcolor{stringliteral}{"{}\ nao\ encontrado."{}}\ <<\ std::endl;}
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00102\ \}}
+
+\end{DoxyCode}
+
+
+\label{doc-variable-members}
+\Hypertarget{class_estoque_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_estoque_a754e2eba82358ea2a0539f4391aeec49}\index{Estoque@{Estoque}!arquivo@{arquivo}}
+\index{arquivo@{arquivo}!Estoque@{Estoque}}
+\doxysubsubsection{\texorpdfstring{arquivo}{arquivo}}
+{\footnotesize\ttfamily \label{class_estoque_a754e2eba82358ea2a0539f4391aeec49} 
+std\+::fstream Estoque\+::arquivo\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{_estoque_8hpp_source_l00012}{12}} of file \mbox{\hyperlink{_estoque_8hpp_source}{Estoque.\+hpp}}.
+
+\Hypertarget{class_estoque_a4b6a7d5adfa2bcd626c72239ac4f3f17}\index{Estoque@{Estoque}!produtos@{produtos}}
+\index{produtos@{produtos}!Estoque@{Estoque}}
+\doxysubsubsection{\texorpdfstring{produtos}{produtos}}
+{\footnotesize\ttfamily \label{class_estoque_a4b6a7d5adfa2bcd626c72239ac4f3f17} 
+std\+::map$<$\mbox{\hyperlink{class_produto}{Produto}}, int$>$ Estoque\+::produtos\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{_estoque_8hpp_source_l00011}{11}} of file \mbox{\hyperlink{_estoque_8hpp_source}{Estoque.\+hpp}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{_estoque_8hpp}{Estoque.\+hpp}}\item 
+src/\mbox{\hyperlink{_estoque_8cpp}{Estoque.\+cpp}}\end{DoxyCompactItemize}

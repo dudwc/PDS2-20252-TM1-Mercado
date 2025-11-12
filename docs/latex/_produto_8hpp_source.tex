@@ -1,0 +1,57 @@
+\doxysection{Produto.\+hpp}
+\hypertarget{_produto_8hpp_source}{}\label{_produto_8hpp_source}\index{include/Produto.hpp@{include/Produto.hpp}}
+\mbox{\hyperlink{_produto_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_produto_8hpp_source_l00001}00001\ \textcolor{preprocessor}{\#ifndef\ PRODUTO\_H}}
+\DoxyCodeLine{\Hypertarget{_produto_8hpp_source_l00002}00002\ \textcolor{preprocessor}{\#define\ PRODUTO\_H}}
+\DoxyCodeLine{\Hypertarget{_produto_8hpp_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{_produto_8hpp_source_l00004}00004\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{\Hypertarget{_produto_8hpp_source_l00005}00005\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{\Hypertarget{_produto_8hpp_source_l00006}00006\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{\Hypertarget{_produto_8hpp_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{_produto_8hpp_source_l00008}\mbox{\hyperlink{class_produto}{00008}}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_produto_abe197264a24269ee3aa01552df243193}{Produto}}\{}
+\DoxyCodeLine{\Hypertarget{_produto_8hpp_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{_produto_8hpp_source_l00010}00010\ \ \ \ \ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{\Hypertarget{_produto_8hpp_source_l00011}\mbox{\hyperlink{class_produto_aaa929e3f52f5a677310e30a89d2d7814}{00011}}\ \ \ \ \ \ \ \ \ std::string\ \mbox{\hyperlink{class_produto_aaa929e3f52f5a677310e30a89d2d7814}{nome}};}
+\DoxyCodeLine{\Hypertarget{_produto_8hpp_source_l00012}\mbox{\hyperlink{class_produto_a2ad13f91582fd70e878fc449c7b77171}{00012}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_produto_a2ad13f91582fd70e878fc449c7b77171}{preco}};}
+\DoxyCodeLine{\Hypertarget{_produto_8hpp_source_l00013}\mbox{\hyperlink{class_produto_a4e1f150fa0cc84776ba28939fb547bf1}{00013}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_produto_a4e1f150fa0cc84776ba28939fb547bf1}{id}};}
+\DoxyCodeLine{\Hypertarget{_produto_8hpp_source_l00014}\mbox{\hyperlink{class_produto_af72bf35fad8d37bb476cfc987ca12f56}{00014}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_produto_af72bf35fad8d37bb476cfc987ca12f56}{disponivel}};}
+\DoxyCodeLine{\Hypertarget{_produto_8hpp_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{_produto_8hpp_source_l00016}00016\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_produto_8hpp_source_l00017}\mbox{\hyperlink{class_produto_abe197264a24269ee3aa01552df243193}{00017}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_produto_abe197264a24269ee3aa01552df243193}{Produto}}(std::string\ \mbox{\hyperlink{class_produto_aaa929e3f52f5a677310e30a89d2d7814}{nome}},\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_produto_a2ad13f91582fd70e878fc449c7b77171}{preco}},\ \textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id})\ :\ }
+\DoxyCodeLine{\Hypertarget{_produto_8hpp_source_l00018}00018\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_produto_aaa929e3f52f5a677310e30a89d2d7814}{nome}}(\mbox{\hyperlink{class_produto_aaa929e3f52f5a677310e30a89d2d7814}{nome}}),\ \mbox{\hyperlink{class_produto_a2ad13f91582fd70e878fc449c7b77171}{preco}}(\mbox{\hyperlink{class_produto_a2ad13f91582fd70e878fc449c7b77171}{preco}}),\ \mbox{\hyperlink{class_produto_a4e1f150fa0cc84776ba28939fb547bf1}{id}}(\mbox{\hyperlink{class_produto_a4e1f150fa0cc84776ba28939fb547bf1}{id}}),\ \mbox{\hyperlink{class_produto_af72bf35fad8d37bb476cfc987ca12f56}{disponivel}}(true)\ \{\}}
+\DoxyCodeLine{\Hypertarget{_produto_8hpp_source_l00019}\mbox{\hyperlink{class_produto_a84a8b28176b743e8c74bfd89aee9a9b2}{00019}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_produto_a84a8b28176b743e8c74bfd89aee9a9b2}{\string~Produto}}()\ \{\};}
+\DoxyCodeLine{\Hypertarget{_produto_8hpp_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{_produto_8hpp_source_l00021}00021\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ std::string\ \mbox{\hyperlink{class_produto_a02d3b219853bec813641d34db5ca987e}{formatPreco}}(\textcolor{keywordtype}{double}\ valor);}
+\DoxyCodeLine{\Hypertarget{_produto_8hpp_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{_produto_8hpp_source_l00023}00023\ \ \ \ \ \ \ \ \ std::string\ \mbox{\hyperlink{class_produto_ac107e573e72ad68558a91505a5ec29cb}{getName}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{_produto_8hpp_source_l00024}00024\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_produto_ace1d384192a7f2cfc7768afa6b7fcbf5}{getPreco}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{_produto_8hpp_source_l00025}00025\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_produto_acbbaf1914697df5d33111575099165c3}{getID}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{_produto_8hpp_source_l00026}00026\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_produto_a87282a9cfcf3c614691855458f2251cd}{estaDisponivel}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{_produto_8hpp_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{_produto_8hpp_source_l00028}00028\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_produto_ae8a6e91817349325b8a0e9232af05329}{setName}}(std::string\ novoNome);}
+\DoxyCodeLine{\Hypertarget{_produto_8hpp_source_l00029}00029\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_produto_a5dcaf6c1d3940bd6df6fee3ee4197cdf}{setPreco}}(\textcolor{keywordtype}{double}\ novoPreco);}
+\DoxyCodeLine{\Hypertarget{_produto_8hpp_source_l00030}00030\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_produto_abea2b59d50513501175fa2dbd576d8f7}{setID}}(\textcolor{keywordtype}{int}\ novoID);}
+\DoxyCodeLine{\Hypertarget{_produto_8hpp_source_l00031}00031\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_produto_af9cd0eba36d1003e19686dc182e76ef0}{setDisponivel}}(\textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_produto_af72bf35fad8d37bb476cfc987ca12f56}{disponivel}});\ \ }
+\DoxyCodeLine{\Hypertarget{_produto_8hpp_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{_produto_8hpp_source_l00033}00033\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_produto_a17dcf005fb5a31f03d3e0f4953457691}{alterarPreco}}();}
+\DoxyCodeLine{\Hypertarget{_produto_8hpp_source_l00034}00034\ }
+\DoxyCodeLine{\Hypertarget{_produto_8hpp_source_l00035}00035\ \};}
+\DoxyCodeLine{\Hypertarget{_produto_8hpp_source_l00036}00036\ }
+\DoxyCodeLine{\Hypertarget{_produto_8hpp_source_l00037}\mbox{\hyperlink{class_frutas_e_verduras}{00037}}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_frutas_e_verduras_a136d8b01a46526f6f19776f46896df29}{FrutasEVerduras}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_produto_abe197264a24269ee3aa01552df243193}{Produto}}\{}
+\DoxyCodeLine{\Hypertarget{_produto_8hpp_source_l00038}00038\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{_produto_8hpp_source_l00039}\mbox{\hyperlink{class_frutas_e_verduras_a8869c762de966f1ee22d9969ae1d9b08}{00039}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_frutas_e_verduras_a8869c762de966f1ee22d9969ae1d9b08}{peso}};}
+\DoxyCodeLine{\Hypertarget{_produto_8hpp_source_l00040}00040\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_produto_8hpp_source_l00041}\mbox{\hyperlink{class_frutas_e_verduras_a136d8b01a46526f6f19776f46896df29}{00041}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_frutas_e_verduras_a136d8b01a46526f6f19776f46896df29}{FrutasEVerduras}}(std::string\ \mbox{\hyperlink{class_produto_aaa929e3f52f5a677310e30a89d2d7814}{nome}},\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_produto_a2ad13f91582fd70e878fc449c7b77171}{preco}},\ \textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id})\ :}
+\DoxyCodeLine{\Hypertarget{_produto_8hpp_source_l00042}00042\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_produto_abe197264a24269ee3aa01552df243193}{Produto}}(\mbox{\hyperlink{class_produto_aaa929e3f52f5a677310e30a89d2d7814}{nome}},\ \mbox{\hyperlink{class_produto_a2ad13f91582fd70e878fc449c7b77171}{preco}},\ \mbox{\hyperlink{class_produto_a4e1f150fa0cc84776ba28939fb547bf1}{id}})\ \{\}}
+\DoxyCodeLine{\Hypertarget{_produto_8hpp_source_l00043}\mbox{\hyperlink{class_frutas_e_verduras_ab52208e56bb8685aed8aedf8dae5f973}{00043}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_frutas_e_verduras_ab52208e56bb8685aed8aedf8dae5f973}{\string~FrutasEVerduras}}()\ \{\};}
+\DoxyCodeLine{\Hypertarget{_produto_8hpp_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{_produto_8hpp_source_l00045}00045\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_frutas_e_verduras_ab15f3870e8c6599e11b05f529c9cdf41}{getPeso}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{_produto_8hpp_source_l00046}00046\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_frutas_e_verduras_a045e84e775fe4926cc85f021b1bb333a}{setPeso}}(\textcolor{keywordtype}{double}\ novaPeso);}
+\DoxyCodeLine{\Hypertarget{_produto_8hpp_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{_produto_8hpp_source_l00048}00048\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_frutas_e_verduras_a1c80f74934093abc2f9e11e285c530b3}{pesar}}();}
+\DoxyCodeLine{\Hypertarget{_produto_8hpp_source_l00049}00049\ \};}
+\DoxyCodeLine{\Hypertarget{_produto_8hpp_source_l00050}00050\ }
+\DoxyCodeLine{\Hypertarget{_produto_8hpp_source_l00051}00051\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

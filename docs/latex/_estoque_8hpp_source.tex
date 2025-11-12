@@ -1,0 +1,32 @@
+\doxysection{Estoque.\+hpp}
+\hypertarget{_estoque_8hpp_source}{}\label{_estoque_8hpp_source}\index{include/Estoque.hpp@{include/Estoque.hpp}}
+\mbox{\hyperlink{_estoque_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_estoque_8hpp_source_l00001}00001\ \textcolor{preprocessor}{\#ifndef\ ESTOQUE\_H}}
+\DoxyCodeLine{\Hypertarget{_estoque_8hpp_source_l00002}00002\ \textcolor{preprocessor}{\#define\ ESTOQUE\_H}}
+\DoxyCodeLine{\Hypertarget{_estoque_8hpp_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{_estoque_8hpp_source_l00004}00004\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{\Hypertarget{_estoque_8hpp_source_l00005}00005\ \textcolor{preprocessor}{\#include\ <map>}}
+\DoxyCodeLine{\Hypertarget{_estoque_8hpp_source_l00006}00006\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{\Hypertarget{_estoque_8hpp_source_l00007}00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_produto_8hpp}{Produto.hpp}}"{}}}
+\DoxyCodeLine{\Hypertarget{_estoque_8hpp_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{_estoque_8hpp_source_l00009}\mbox{\hyperlink{class_estoque}{00009}}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_estoque_ad459d7d644df8e6369853f7cfed57d16}{Estoque}}\{}
+\DoxyCodeLine{\Hypertarget{_estoque_8hpp_source_l00010}00010\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{_estoque_8hpp_source_l00011}\mbox{\hyperlink{class_estoque_a4b6a7d5adfa2bcd626c72239ac4f3f17}{00011}}\ \ \ \ \ \ \ \ \ std::map<Produto,\ int>\ \mbox{\hyperlink{class_estoque_a4b6a7d5adfa2bcd626c72239ac4f3f17}{produtos}};}
+\DoxyCodeLine{\Hypertarget{_estoque_8hpp_source_l00012}\mbox{\hyperlink{class_estoque_a754e2eba82358ea2a0539f4391aeec49}{00012}}\ \ \ \ \ \ \ \ \ std::fstream\ \mbox{\hyperlink{class_estoque_a754e2eba82358ea2a0539f4391aeec49}{arquivo}};}
+\DoxyCodeLine{\Hypertarget{_estoque_8hpp_source_l00013}00013\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_estoque_8hpp_source_l00014}00014\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_estoque_ad459d7d644df8e6369853f7cfed57d16}{Estoque}}();}
+\DoxyCodeLine{\Hypertarget{_estoque_8hpp_source_l00015}00015\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_estoque_ad459d7d644df8e6369853f7cfed57d16}{Estoque}}(\textcolor{keyword}{const}\ std::map<Produto,\ int>\&\ \mbox{\hyperlink{class_estoque_a4b6a7d5adfa2bcd626c72239ac4f3f17}{produtos}});}
+\DoxyCodeLine{\Hypertarget{_estoque_8hpp_source_l00016}\mbox{\hyperlink{class_estoque_a99c7f0dc2b6fa9950ad25b0071b9cb9b}{00016}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_estoque_a99c7f0dc2b6fa9950ad25b0071b9cb9b}{\string~Estoque}}()\ \{\};}
+\DoxyCodeLine{\Hypertarget{_estoque_8hpp_source_l00017}00017\ }
+\DoxyCodeLine{\Hypertarget{_estoque_8hpp_source_l00018}00018\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_estoque_acb5bda4855d5a0431327813c73144374}{adicionarProduto}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_produto}{Produto}}\&\ produto,\ \textcolor{keywordtype}{int}\ qtd);}
+\DoxyCodeLine{\Hypertarget{_estoque_8hpp_source_l00019}00019\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_estoque_a14f6e03a0a3c1701905786cdc4afba99}{removerProduto}}(\textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id},\ \textcolor{keywordtype}{int}\ qtd);}
+\DoxyCodeLine{\Hypertarget{_estoque_8hpp_source_l00020}00020\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_produto}{Produto}}*\ \mbox{\hyperlink{class_estoque_a0c93b44245eab1a8081a55e93b91481c}{buscarID}}(\textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{\Hypertarget{_estoque_8hpp_source_l00021}00021\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_produto}{Produto}}*\ \mbox{\hyperlink{class_estoque_aac4d1f8df78bad0de3bf08a46290b675}{buscarNome}}(\textcolor{keyword}{const}\ std::string\&\ nome);}
+\DoxyCodeLine{\Hypertarget{_estoque_8hpp_source_l00022}00022\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_estoque_a73a0e69d50fc5751106d231bd549ed4e}{listarProdutos}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{_estoque_8hpp_source_l00023}00023\ \};}
+\DoxyCodeLine{\Hypertarget{_estoque_8hpp_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{_estoque_8hpp_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{_estoque_8hpp_source_l00026}00026\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}
