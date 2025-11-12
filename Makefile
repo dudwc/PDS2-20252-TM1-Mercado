@@ -13,10 +13,10 @@ obj/Caixa.o: src/Caixa.cpp include/Caixa.hpp
 	${CC} ${CFLAGS} -c src/Caixa.cpp -o obj/Caixa.o
 
 obj/main.o: main.cpp
-	$(CC) $(CFLAGS) -c main.cpp -o obj/main.o
+	${CC} ${CFLAGS} -c main.cpp -o obj/main.o
 
 main: obj/Produto.o obj/Estoque.o obj/Caixa.o obj/main.o
-	$(CC) $(CFLAGS) -o main obj/Produto.o obj/Estoque.o obj/Caixa.o obj/main.o
+	${CC} ${CFLAGS} -o main obj/Produto.o obj/Estoque.o obj/Caixa.o obj/main.o
 
 //incluir Funcionario, Cliente, Sistema
               
