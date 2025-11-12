@@ -19,18 +19,18 @@ class Caixa{
     
     public:
         Caixa(int usuario, Estoque &estoque, std::string formaPagamento = "");
+
         ~Caixa(){};
-
-        bool CadastrarProduto(const Produto& p, int quantidade);
-
         
-        bool AdicionarItem(const Produto& p,double quantidade=1);
-        bool RemoverItem(const Produto& p,double quantidade=1);
-        double ExibirTotal() const;
-        void ExibirCarrinho() const;
-        void GerarNotaFiscal() const;
+        bool cadastrarProduto(const Produto& p, int quantidade);
 
-        
+        bool adicionarItem(const Produto& p,double quantidade=1);
+        bool removerItem(const Produto& p,double quantidade=1);
+        double exibirTotal() const;
+        double calcularTroco(double valorPago) const;
+        void exibirCarrinho() const;
+        void gerarNotaFiscal(double valorPago = 0.0) const;
+
         std::string  getFormaPagamento() const;
         int getUsuario() const;
 };
