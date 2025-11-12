@@ -28,13 +28,13 @@ Este repositório contém os artefatos do sistema de *Totem de Supermercado*, um
 → Persistência em arquivo
 → Visualização do histórico
 
-#### - Cartões CRC - Grupo 5.pdf 
+### - Cartões CRC - Grupo 5.pdf 
 → Definição dos cartões CRC.
 
-#### - User Stories - Grupo 5.pdf 
+### - User Stories - Grupo 5.pdf 
 → Histórias de usuário do sistema.
 
-#### - README.md 
+### - README.md 
 → Apresentação do repositório.
 
 ## 👥 Grupo 5
