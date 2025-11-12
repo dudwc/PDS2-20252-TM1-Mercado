@@ -11,13 +11,14 @@ Caixa::Caixa(int usuario, Estoque &estoque, std::string formaPagamento)
     : formaPagamento(formaPagamento), usuario(usuario), estoque(estoque) {}
 
 
+
 std::string Caixa::getFormaPagamento() const{
         return formaPagamento;
 }
 int Caixa::getUsuario() const{
         return usuario;
 }
-bool Caixa::CadastrarProduto(const Produto &p, int quantidade){
+bool Caixa::cadastrarProduto(const Produto &p, int quantidade){
         if (this->usuario != 1){
                 std::cout << "Apenas funcionários podem cadastrar novos produtos\n";
                 return false;
@@ -31,7 +32,7 @@ bool Caixa::CadastrarProduto(const Produto &p, int quantidade){
                 }
         }
 }
-bool Caixa::AdicionarItem(const Produto &p, double quantidade){
+bool Caixa::adicionarItem(const Produto &p, double quantidade){
         if (quantidade <= 0){
                 std::cout << "Quantidade inválida.\n";
                 return false;
@@ -43,7 +44,7 @@ bool Caixa::AdicionarItem(const Produto &p, double quantidade){
         }
         return true;
 }
-bool Caixa::RemoverItem(const Produto &p, double quantidade){
+bool Caixa::removerItem(const Produto &p, double quantidade){
         if (carrinho.find(p.getID()) == carrinho.end()){
                 return false;
         }
@@ -54,11 +55,11 @@ bool Caixa::RemoverItem(const Produto &p, double quantidade){
         }
         return true;
 }
-double Caixa::ExibirTotal() const{
+double Caixa::exibirTotal() const{
         double total = 0.0;
         for (auto it = carrinho.begin(); it != carrinho.end(); it++){
                 int chave = it->first;         
-                double quantidade = it->second; 
+                double quantidade = it->second;
                 const Produto *p = estoque.buscarID(chave);
                 if (p != nullptr){
                         total += p->getPreco() * quantidade;
@@ -68,10 +69,10 @@ double Caixa::ExibirTotal() const{
         }
         return total;
 }
-void Caixa::ExibirCarrinho() const{
+void Caixa::exibirCarrinho() const{
         if (carrinho.empty()){
                 std::cout << "Carrinho vazio.\n";
-                return;
+                return; 
         }
         std::cout << std::left << std::setw(20) << "ITEM" << "QUANTIDADE" << std::endl;
         for (const auto &par : carrinho){
@@ -84,7 +85,12 @@ void Caixa::ExibirCarrinho() const{
                 }
         }
 }
-void Caixa::GerarNotaFiscal() const{
+double Caixa::calcularTroco(double valorPago) const{
+        double total = exibirTotal();
+        double troco = valorPago - total;
+        return troco;
+}
+void Caixa::gerarNotaFiscal(double valorPago) const{
         std::cout << "=========================================\n";
         std::cout << "            SUPERTOP          \n";
         std::cout << "=========================================\n";
@@ -99,16 +105,23 @@ void Caixa::GerarNotaFiscal() const{
                         if (p != nullptr) {        
                         std::string nome = p->getName();
                         double preco = p->getPreco();
-                        std::cout << std::left << std::setw(20) << nome << std::setw(10) << quantidade
+                        std::cout << std::left << std::setw(20) << nome 
+                                  << std::setw(10) << std::fixed << std::setprecision(2)<< quantidade
                                   << "R$ " << std::fixed << std::setprecision(2)
                                   << preco * quantidade << std::endl;
                         }
         }
         std::cout << "-----------------------------------------\n";
-        std::cout << std::setw(30) << "TOTAL:"
+        std::cout << std::setw(30)<< "TOTAL:"
                   << "R$ " << std::fixed << std::setprecision(2)
-                  << ExibirTotal() << std::endl;
-        std::cout << "FORMA DE PAGAMENTO: " << formaPagamento << std::endl;
+                  << exibirTotal() << std::endl;
+        std::cout << std::setw(30)<< "FORMA DE PAGAMENTO: "<< formaPagamento << std::endl;
+        if(formaPagamento == "Dinheiro"){
+                std::cout << std::setw(30)<< "VALOR PAGO:"<< "R$ " << valorPago << std::endl;
+                std::cout << std::setw(30)<<"TROCO:"<< "R$ " << std::fixed << 
+                std::setprecision(2)<< calcularTroco(valorPago) << std::endl;
+
+        }
         std::cout << "=========================================\n";
         std::cout << "           VOLTE SEMPRE! :D              \n";
         std::cout << "=========================================\n";
