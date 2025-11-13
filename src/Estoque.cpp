@@ -3,7 +3,7 @@
 #include <sstream>
 
 Estoque::Estoque(){
-    arquivo.open("estoque.txt", std::ios::in);
+    arquivo.open("../arquivos/estoque.txt", std::ios::in);
     if (!arquivo.is_open()) {
         std::cout << "Erro ao abrir o arquivo de estoque." << std::endl;
         return;
@@ -17,7 +17,7 @@ Estoque::Estoque(){
         double preco;
         int quantidade;
 
-        if (!(iss >> id >> std::quoted(nome) >> preco >> quantidade)) {
+        if (!(iss >> id >> nome >> preco >> quantidade)) {
             std::cout << "Erro ao ler a linha do arquivo: " << linha << std::endl;
             continue; // Pula para a próxima linha em caso de erro
         }
@@ -39,9 +39,9 @@ Estoque::Estoque(const std::map<Produto, int>& produtos) :
 
     for (const auto& produto : produtos) {
         arquivo << produto.first.getID() << " " 
-                << std::quoted(produto.first.getName()) << " " 
+                << produto.first.getName() << " " 
                 << std::fixed << std::setprecision(2) << produto.first.getPreco() << " "
-                << produto.second << "unidades"
+                << produto.second << " unidades"
                 << std::endl;
     }
 
@@ -58,9 +58,9 @@ void Estoque::adicionarProduto(const Produto& produto, int qtd) {
 
     for (const auto& p : produtos) {
         arquivo << p.first.getID() << " " 
-                << std::quoted(p.first.getName()) << " " 
+                << p.first.getName() << " " 
                 << std::fixed << std::setprecision(2) << p.first.getPreco() << " "
-                << p.second << "unidades"
+                << p.second << " unidades"
                 << std::endl;
     }
 
@@ -83,9 +83,9 @@ bool Estoque::removerProduto(int id, int qtd){
 
                 for (const auto& p : produtos) {
                     arquivo << p.first.getID() << " " 
-                            << std::quoted(p.first.getName()) << " " 
+                            << p.first.getName() << " " 
                             << std::fixed << std::setprecision(2) << p.first.getPreco() << " "
-                            << p.second << "unidades"
+                            << p.second << " unidades"
                             << std::endl;
                 }
 
