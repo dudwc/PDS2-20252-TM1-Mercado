@@ -10,6 +10,7 @@ class Funcionario{
         std::string nome;
         int id;
         std::string senha;
+        bool logado = false;
 
     public:
         Funcionario(std::string nome, int id, std::string senha);
@@ -18,10 +19,12 @@ class Funcionario{
         std::string getNome() const;
         int getID() const;
         std::string getSenha() const;
+        bool isLogado() const;
 
         void setNome(std::string novoNome);
         void setID(int novoID);
         void setSenha(std::string novaSenha);
+        void setLogado(bool logado);
 
 };
 

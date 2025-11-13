@@ -32,6 +32,10 @@ class Produto{
 
         void alterarPreco();
 
+        bool operator<(const Produto& other) const {
+            return id < other.id;
+        }
+
 };
 
 class FrutasEVerduras : public Produto{

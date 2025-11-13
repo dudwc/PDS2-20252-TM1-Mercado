@@ -16,15 +16,22 @@
 class Sistema {
     private:
         Estoque estoque;
+        std::fstream arquivo;
+        std::vector<Funcionario> funcionarios;
+        static int proximoIDFuncionario;  // Rastreia o próximo ID a ser atribuído
     
     public:
-        Sistema() {}
-        ~Sistema() {}
+    Sistema();
+    ~Sistema();
 
         void iniciar();
         void exibirMenuPrincipal();
         void exibirLogo();
         void print(std::string texto);
+        Funcionario* cadastrarFuncionario();
+        void loginFuncionario();
+        bool verificarLogin(const std::string & usuario, const int id, const std::string& senha);
+        void carregarProximoID();
+        void salvarProximoID();
 };
-
 #endif
