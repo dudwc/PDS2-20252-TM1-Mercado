@@ -54,12 +54,11 @@ link para o html gerado: https://dudwc.github.io/PDS2-20252-TM1-Mercado/
 
 ## 📄 Fontes externas 📄
 
- *-Usados por Maísa* 
 - https://en.cppreference.com/w/cpp/algorithm/find.html
 - https://en.cppreference.com/w/cpp/io/manip/setw.html
 - https://medium.com/@ryan_forrester_/how-to-iterate-through-a-map-in-c-8aa459ea8bc5
 
-  *-Usados por Larissa*
+  
 - https://youtu.be/nUQKr-ey86Y?si=SKlJSceKTZR9aiMI - CFBCursos
 - https://runestone.academy/ns/books/published/thinkcpp/index.html
 - https://www.kufunda.net/publicdocs/C++%20Como%20Programar%20-%205%C2%AA%20Edi%C3%A7%C3%A3o.pdf
