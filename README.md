@@ -1,9 +1,9 @@
 # PDS2-20252-TM1-Mercado 🛒
 
-Projeto desenvolvido na disciplina de *PDS2*.  
+Projeto desenvolvido na disciplina de *Programação e Desenvolvilemnto de Software 2*.  
 Este repositório contém os artefatos do sistema de *Totem de Supermercado*, um sistema de autoatendimento e também de caixa para facilitar a experiência do cliente e apoiar funcionários no gerenciamento de estoque e vendas.
 
-## 📂 Estrutura
+## 📂 Estrutura 📂
 
 ###  Sistema de Caixa (Caixa.hpp/Caixa.cpp)
 → Adição e remoção de itens do carrinho
@@ -48,8 +48,24 @@ Este repositório contém os artefatos do sistema de *Totem de Supermercado*, um
 ###  README.md 
 → Apresentação do repositório.
 
+### Doxyfile 
+→ Documentação automatizada (de acordo com parâmetros definidos por nós) sobre a estrutura do trabalho.
+link para o html gerado: https://dudwc.github.io/PDS2-20252-TM1-Mercado/
+
+## 📄 Fontes externas 📄
+
+ *-Usados por Maísa* 
+- https://en.cppreference.com/w/cpp/algorithm/find.html
+- https://en.cppreference.com/w/cpp/io/manip/setw.html
+- https://medium.com/@ryan_forrester_/how-to-iterate-through-a-map-in-c-8aa459ea8bc5
+
+  *-Usados por Larissa*
+- https://youtu.be/nUQKr-ey86Y?si=SKlJSceKTZR9aiMI - CFBCursos
+- https://runestone.academy/ns/books/published/thinkcpp/index.html
+- https://www.kufunda.net/publicdocs/C++%20Como%20Programar%20-%205%C2%AA%20Edi%C3%A7%C3%A3o.pdf
+
 ## 👥 Grupo 5
-- Maria Eduarda Carvalho Costa  
 - Guilherme Prado
+- Larissa Rafaele
 - Maísa Vitória
-- Larissa Rafaele 
+- Maria Eduarda Carvalho Costa  
