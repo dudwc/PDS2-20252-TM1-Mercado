@@ -1,6 +1,7 @@
 #ifndef CLIENTE_HPP
 #define CLIENTE_HPP
 
+#include <iostream>
 #include <string>
 #include <vector>
 
