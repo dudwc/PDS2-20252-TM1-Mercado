@@ -50,7 +50,7 @@ class SistemaFuncionario : public Sistema {
 
 class SistemaCliente : public Sistema {
     private:
-        //Caixa caixa;        
+        std::vector<Cliente> clientes; // lista de clientes armazenados no sistema
 
     public:
         SistemaCliente();
@@ -58,9 +58,13 @@ class SistemaCliente : public Sistema {
 
         void iniciar() override;
         void exibirMenu() override;
+
         Cliente* cadastrarCliente();
-        void loginCliente();
+        void loginCliente(); // logar usando o CPF
+        bool verificarLogin(const std::string& cpf); // checa se o CPF existe
+        
 };
 
+#endif 
 
 #endif
