@@ -2,60 +2,26 @@
 #include <cstdlib>  // Para std::exit
 #include <fstream>
 #include <sstream>
-int Sistema::proximoIDFuncionario = 3971;
+//============================= Sistema ============================//
 
-Sistema::Sistema() {
-    carregarProximoID();
-    std::ifstream arquivoFuncionarios("arquivos/funcionarios.txt");
-    //std::ifstream arquivoClientes("../arquivos/clientes.txt");
-    if (!arquivoFuncionarios.is_open()) {
-        print("Erro ao iniciar sistema.\n");
-        std::exit(1);
-    }
-    std::string linha;
-    while(std::getline(arquivoFuncionarios, linha)) {
-        std::istringstream iss(linha);
-        std::string nome;
-        int id;
-        std::string senha;
-
-        if(!(iss >> nome >> id >> senha)) {
-            print("Formato de arquivo invalido para funcionario: " + linha + "\n");
-            continue;
-        } else {
-            Funcionario funcionario(nome, id, senha);
-            funcionarios.push_back(funcionario);
-        }
-    }
-    arquivoFuncionarios.close();
-
-    /*while(std::getline(arquivoClientes, linha)) {
-        // Implementar leitura de clientes
-    }*/
-}
+Sistema::Sistema() {}
 
 Sistema::~Sistema() {}
-
-void Sistema::carregarProximoID() {
-    std::ifstream arquivo("arquivos/proximoID.txt");
-    if (arquivo.is_open()) {
-        arquivo >> proximoIDFuncionario;
-        arquivo.close();
-    }
-}
-
-void Sistema::salvarProximoID() {
-    std::ofstream arquivo("arquivos/proximoID.txt");
-    if (arquivo.is_open()) {
-        arquivo << proximoIDFuncionario;
-        arquivo.close();
-    }
-}
 
 void Sistema::print(std::string texto) {
     int delay_milliseconds = 1; // tempo de atraso entre cada caractere
 
     for (char c : texto) {
+        std::cout << c << std::flush; // imprime caractere e limpa o buffer
+        std::this_thread::sleep_for(std::chrono::milliseconds(delay_milliseconds)); // funcao de atraso
+    }
+}
+
+void Sistema::carregar() {
+    int delay_milliseconds = 30; // tempo de atraso entre cada caractere
+
+    print("CARREGANDO");
+    for (char c : ".......................................\n") {
         std::cout << c << std::flush; // imprime caractere e limpa o buffer
         std::this_thread::sleep_for(std::chrono::milliseconds(delay_milliseconds)); // funcao de atraso
     }
@@ -70,7 +36,7 @@ void Sistema::iniciar(){
         system("cls");
         switch(c){
             case 1:{
-                exibirMenuPrincipal();
+                exibirMenu();
                 break;}
                 
             case 2:
@@ -99,14 +65,16 @@ void Sistema::exibirLogo(){
             entrada.close();
 }
 
-void Sistema::exibirMenuPrincipal(){
+void Sistema::exibirMenu(){
     int opcao;
+    SistemaFuncionario sistemaF;
+    SistemaCliente sistemaC;
     while(true) {
         system("cls");
         exibirLogo();
         print("\n--- Menu Principal ---\n");
-        print("1. Login de funcionario\n");
-        print("2. Cadastrar funcionario\n");
+        print("1. Comprar\n");
+        print("2. Entrar como funcionario\n");
         print("3. Sair\n");
         print("Escolha uma opcao: ");
         std::cin >> opcao;
@@ -114,14 +82,11 @@ void Sistema::exibirMenuPrincipal(){
         switch (opcao) {
             case 1:
                 system("cls");
-                print("Login de funcionario.\n");
-                loginFuncionario();
-                std::cin >> opcao;
+                sistemaC.iniciar();
                 break;
             case 2:
                 system("cls");
-                print("Cadastro de novo funcionario.\n");
-                cadastrarFuncionario();
+                sistemaF.iniciar();
                 break;
             case 3:
                 system("cls");
@@ -135,7 +100,117 @@ void Sistema::exibirMenuPrincipal(){
     };
 }
 
-Funcionario* Sistema::cadastrarFuncionario(){
+//============================= SistemaFuncionario ============================//
+
+int SistemaFuncionario::proximoIDFuncionario = 3974;
+
+SistemaFuncionario::SistemaFuncionario() {
+    carregarProximoID();
+    std::ifstream arquivoFuncionarios("arquivos/funcionarios.txt");
+    if (!arquivoFuncionarios.is_open()) {
+        print("Erro ao iniciar sistema.\n");
+        std::exit(1);
+    }
+    std::string linha;
+    while(std::getline(arquivoFuncionarios, linha)) {
+        std::istringstream iss(linha);
+        std::string nome;
+        int id;
+        std::string senha;
+
+        if(!(iss >> nome >> id >> senha)) {
+            print("Formato de arquivo invalido para funcionario: " + linha + "\n");
+            continue;
+        } else {
+            Funcionario funcionario(nome, id, senha);
+            funcionarios.push_back(funcionario);
+        }
+    }
+    arquivoFuncionarios.close();
+
+    /*while(std::getline(arquivoClientes, linha)) {
+        // Implementar leitura de clientes
+    }*/
+}
+
+SistemaFuncionario::~SistemaFuncionario() {}
+
+void SistemaFuncionario::iniciar() {
+    int opcao;
+    while(true) {
+        system("cls");
+        print("1. Fazer login.\n");
+        print("2. Voltar ao menu principal.\n");
+        print("Escolha uma opcao: ");
+        std::cin >> opcao;
+        switch (opcao) {
+            case 1:
+                system("cls");
+                loginFuncionario();
+                return;
+            case 2:
+                return;
+            default:
+                system("cls");
+                print("Opcao invalida. Tente novamente.\n");
+                break;
+        }
+    }
+}
+
+void SistemaFuncionario::exibirMenu() {
+    int opcao;
+    while(true) {
+        system("cls");
+        print("--- Menu de Funcionario ---\n");
+        print("1. Gerenciar Estoque\n");
+        print("2. Cadastrar novo funcionario\n");
+        print("3. Sair\n");
+        print("Escolha uma opcao: ");
+        std::cin >> opcao;
+        switch (opcao) {
+            case 1:
+                system("cls");
+                print("Sistema em manutencao\n");
+                print("1. Voltar.\n");
+                print("Escolha uma opcao: ");
+                std::cin >> opcao;
+                break;
+            case 2:
+                system("cls");
+                cadastrarFuncionario();
+                break;
+            case 3:
+                system("cls");
+                print("Saindo do sistema...\n");
+                carregar();
+                return;
+            default:
+                system("cls");
+                print("Opcao invalida. Tente novamente.\n");
+                break;
+        }
+
+    }
+}
+
+void SistemaFuncionario::carregarProximoID() {
+    std::ifstream arquivo("arquivos/proximoID.txt");
+    if (arquivo.is_open()) {
+        arquivo >> proximoIDFuncionario;
+        arquivo.close();
+    }
+}
+
+void SistemaFuncionario::salvarProximoID() {
+    std::ofstream arquivo("arquivos/proximoID.txt");
+    if (arquivo.is_open()) {
+        arquivo << proximoIDFuncionario;
+        arquivo.close();
+    }
+}
+
+Funcionario* SistemaFuncionario::cadastrarFuncionario(){
     std::string nome, senha;
     int id = proximoIDFuncionario;
     
@@ -164,40 +239,125 @@ Funcionario* Sistema::cadastrarFuncionario(){
     salvarProximoID();
     
     print("Funcionario cadastrado com sucesso! ID: " + std::to_string(id) + "\n");
+    print("Pressione 1 para continuar: ");
+    int i;
+    std::cin >> i;
     
     return &funcionarios.back();
 }
 
-
-void Sistema::loginFuncionario(){
-    std::string nome;
+void SistemaFuncionario::loginFuncionario(){
     int id;
     std::string senha;
-    print("Nome: ");
-    std::cin >> nome;
     print("ID: ");
     std::cin >> id;
     print("Senha: ");
     std::cin >> senha;
-    bool status = verificarLogin(nome, id, senha);
-    if(!status){
+    bool status = verificarLogin(id, senha);
+    if(status){
         for(auto& funcionario : funcionarios){
-            if(funcionario.getNome() == nome && funcionario.getID() == id && funcionario.getSenha() == senha){
+            if(funcionario.getID() == id && funcionario.getSenha() == senha){
                 funcionario.setLogado(true);
-                return;
+                exibirMenu();
             }
         }
     }
 }
 
-bool Sistema::verificarLogin(const std::string& nome, const int id, const std::string& senha){
+bool SistemaFuncionario::verificarLogin(const int id, const std::string& senha){
     for(const auto& funcionario : funcionarios){
-        if(funcionario.getNome() == nome && funcionario.getID() == id && funcionario.getSenha() == senha){
+        if(funcionario.getID() == id && funcionario.getSenha() == senha){
             system("cls");
-            print("Login bem sucedido! Bem-vinda(o), " + nome + ".\n");
+            print("Login bem sucedido! Bem-vinda(o), " + funcionario.getNome() + ".\n");
+            carregar();
             return true;
         }
     }
     print("Falha no login. Verifique suas credenciais.\n");
     return false;
+}
+
+//============================= SistemaCliente ============================//
+
+SistemaCliente::SistemaCliente() { /*std::ifstream arquivoClientes("../arquivos/clientes.txt");*/ }
+
+SistemaCliente::~SistemaCliente() {}
+
+void SistemaCliente::iniciar() {
+    int opcao;
+    while(true) {
+        system("cls");
+        print("1. Fazer login.\n");
+        print("2. Fazer cadastro.\n");
+        print("3. Voltar ao menu principal.\n");
+        print("Escolha uma opcao: ");
+        std::cin >> opcao;
+        switch (opcao) {
+            case 1:
+                system("cls");
+                loginCliente();
+                break;
+            case 2:
+                system("cls");
+                cadastrarCliente();
+                break;
+            case 3:
+                return;
+            default:
+                system("cls");
+                print("Opcao invalida. Tente novamente.\n");
+                break;
+        }
+    }
+}
+
+void SistemaCliente::exibirMenu() {
+    int opcao;
+    while(true) {
+        system("cls");
+        print("--- Menu de Cliente ---\n");
+        print("1. Fazer compras\n");
+        print("2. Ver historico de compras\n");
+        print("3. Sair\n");
+        print("Escolha uma opcao: ");
+        std::cin >> opcao;
+        switch (opcao) {
+            case 1:
+                system("cls");
+                print("Sistema em manutencao\n");
+                print("Pressione 1 para continuar: ");
+                std::cin >> opcao;
+                break;
+            case 2:
+                system("cls");
+                print("Sistema em manutencao\n");
+                print("Pressione 1 para continuar: ");
+                std::cin >> opcao;
+                break;
+            case 3:
+                system("cls");
+                print("Saindo do sistema...\n");
+                carregar();
+                return;
+            default:
+                system("cls");
+                print("Opcao invalida. Tente novamente.\n");
+                break;
+        }
+    }
+}
+
+Cliente* SistemaCliente::cadastrarCliente(){
+    print("Sistema em manutencao.\n");
+    print("Pressione 1 para continuar: ");
+    int i;
+    std::cin >> i;
+    return nullptr;
+}
+
+void SistemaCliente::loginCliente(){
+    print("Sistema em manutencao.\n");
+    print("Pressione 1 para continuar: ");
+    int i;
+    std::cin >> i;
 }
