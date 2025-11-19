@@ -2,6 +2,7 @@
 #include <cstdlib>  // Para std::exit
 #include <fstream>
 #include <sstream>
+#include "Sistema.hpp"
 //============================= Sistema ============================//
 
 Sistema::Sistema() {}
@@ -279,14 +280,50 @@ bool SistemaFuncionario::verificarLogin(const int id, const std::string& senha){
 
 //============================= SistemaCliente ============================//
 
-SistemaCliente::SistemaCliente() { /*std::ifstream arquivoClientes("../arquivos/clientes.txt");*/ }
+SistemaCliente::SistemaCliente() {
+    std::ifstream arquivoClientes("../arquivos/clientes.txt");
+    if (!arquivo.is_open())
+        print("Nenhum arquivo de clientes encontrado. Criando um novo... \n")
+        return;
+    }
 
-SistemaCliente::~SistemaCliente() {}
+    std::string linha;
+    std::string nome, cpf;
+
+    while (std::getline(arquivo, linha)) {
+        std::istringstream iss(linha);
+
+        if(!(iss >> nome >> cpf)) {
+            print("Falha ao ler cliente: " + linha + "\n");
+            continue;
+        }
+
+        clientes.emplace_back(nome, cpf);
+    }
+
+    arquivo.close();
+
+
+SistemaCliente::~SistemaCliente() {
+    std::ofstream arquivo("../arquivos/clientes.txt", std::ios::trunc);
+
+    if (!arquivo.is_open()) {
+        print("Erro ao salvar clientes no arquivo. \n");
+        return;
+    }
+
+    for (auto& c : clientes) {
+        arquivo << c.getNome() << " " << c.getCPF() << "\n";
+    }
+    arquivo.close();
+}
+
 
 void SistemaCliente::iniciar() {
     int opcao;
     while(true) {
         system("cls");
+        print("---- Menu do Cliente ----\n")
         print("1. Fazer login.\n");
         print("2. Fazer cadastro.\n");
         print("3. Voltar ao menu principal.\n");
@@ -315,7 +352,7 @@ void SistemaCliente::exibirMenu() {
     int opcao;
     while(true) {
         system("cls");
-        print("--- Menu de Cliente ---\n");
+        print("--- Menu do Cliente ---\n");
         print("1. Fazer compras\n");
         print("2. Ver historico de compras\n");
         print("3. Sair\n");
@@ -324,40 +361,86 @@ void SistemaCliente::exibirMenu() {
         switch (opcao) {
             case 1:
                 system("cls");
-                print("Sistema em manutencao\n");
-                print("Pressione 1 para continuar: ");
-                std::cin >> opcao;
+                print("Sistema de compras em manutencao.\n");
+                print("Pressione ENTER para voltar.");
+                std::cin.ignore();
+                std::cin.get();
                 break;
             case 2:
                 system("cls");
-                print("Sistema em manutencao\n");
-                print("Pressione 1 para continuar: ");
-                std::cin >> opcao;
+                print("Sistema de hsitórico em manutencao.\n");
+                print("Pressione ENTER para voltar. ");
+                std::cin.ignore();
+                std::cin.get();
                 break;
             case 3:
                 system("cls");
-                print("Saindo do sistema...\n");
+                print("Saindo...\n");
                 carregar();
                 return;
             default:
                 system("cls");
-                print("Opcao invalida. Tente novamente.\n");
+                print("Opcao invalida. \n");
                 break;
         }
     }
 }
 
 Cliente* SistemaCliente::cadastrarCliente(){
-    print("Sistema em manutencao.\n");
-    print("Pressione 1 para continuar: ");
-    int i;
-    std::cin >> i;
-    return nullptr;
+    std::string nome, cpf;
+
+    print("----- Cadastro de Cliente -----");
+    print("Digite o nome: ");
+    std::cin >> nome;
+
+    print("Digite o CPF: ")
+    std::cin >> cpf;
+
+    if (verificarLogin(cpf)) { // verificar se o login existe no sistema
+        print("Ja existe um cliente com esse CPF! \n");
+        print("Pressione ENTER para continuar...");
+        std::cin.ignore();
+        std::cin.get();
+        return nullptr;
+    }
+
+    clientes.emplace_back(nome, cpf);
+
+    print ("Cliente cadastrado com sucesso!\n");
+    print ("Pressione ENTER para continuar...")
+    std::cin.ignore();
+    std::cin.get();
+
+    return &clientes.back
+}
+
+bool SistemaCliente::verificarLogin(const std::string& cpf) {
+    for (auto& c : clientes) {
+        if (c.getCPF() == cpf) {
+            return true;
+        }
+    }
+    return false;
 }
 
 void SistemaCliente::loginCliente(){
-    print("Sistema em manutencao.\n");
-    print("Pressione 1 para continuar: ");
-    int i;
-    std::cin >> i;
+    std::string cpf;
+    print("---- Login do Cliente ----\n");
+    print("Digite seu CPF: ")
+    std:: cin >> cpf;
+
+    if (verificarLogin(cpf)) {
+        print("Login realizado!\n");
+        print("Pressione ENTER para continuar...");
+        std::cin.ignore();
+        std::cin.get();
+
+        exibirMenu(); // leva ao menu do cliente
+    
+    }else{
+        print("CPF nao encontrado. \n");
+        print("Pressione ENTER para continuar...");
+        std::cin.ignore();
+        std::cin.get();
+    }
 }
