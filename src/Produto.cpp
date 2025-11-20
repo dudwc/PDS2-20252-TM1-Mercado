@@ -8,6 +8,10 @@ std::string Produto::formatPreco(double valor){
     return oss.str();
 }
 
+std::string Produto::getUnidade() const {
+    return unidade;
+}
+
 std::string Produto::getName() const{
     return nome;
 }
