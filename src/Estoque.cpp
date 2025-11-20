@@ -16,20 +16,24 @@ Estoque::Estoque(){
         std::string nome;
         double preco;
         int quantidade;
+        std::string tipo;
 
-        if (!(iss >> id >> nome >> preco >> quantidade)) {
+        if (!(iss >> id >> nome >> preco >> quantidade >> tipo)) {
             std::cout << "Erro ao ler a linha do arquivo: " << linha << std::endl;
             continue; // Pula para a próxima linha em caso de erro
         }
 
         Produto produto(nome, preco, id);
+        if(tipo == "KG"){
+            produto = FrutasEVerduras(nome, preco, id);
+        }
         produtos[produto] = quantidade;
     }
 
     arquivo.close();
 }
 
-Estoque::Estoque(const std::map<Produto, int>& produtos) : 
+Estoque::Estoque(const std::map<Produto, double>& produtos) : 
     produtos(produtos) {
     arquivo.open("estoque.txt", std::ios::out | std::ios::trunc);
     if (!arquivo.is_open()) {
@@ -41,14 +45,14 @@ Estoque::Estoque(const std::map<Produto, int>& produtos) :
         arquivo << produto.first.getID() << " " 
                 << produto.first.getName() << " " 
                 << std::fixed << std::setprecision(2) << produto.first.getPreco() << " "
-                << produto.second << " unidades"
+                << produto.second << " " << produto.first.getUnidade()
                 << std::endl;
     }
 
     arquivo.close();
 }
 
-void Estoque::adicionarProduto(const Produto& produto, int qtd) {
+void Estoque::adicionarProduto(const Produto& produto, double qtd) {
     produtos[produto] += qtd;
     arquivo.open("estoque.txt", std::ios::out | std::ios::trunc);
     if (!arquivo.is_open()) {
@@ -60,14 +64,14 @@ void Estoque::adicionarProduto(const Produto& produto, int qtd) {
         arquivo << p.first.getID() << " " 
                 << p.first.getName() << " " 
                 << std::fixed << std::setprecision(2) << p.first.getPreco() << " "
-                << p.second << " unidades"
+                << p.second << " " << p.first.getUnidade()
                 << std::endl;
     }
 
     arquivo.close();
 }
 
-bool Estoque::removerProduto(int id, int qtd){
+bool Estoque::removerProduto(int id, double qtd){
     for (auto it = produtos.begin(); it != produtos.end(); ++it) {
         if (it->first.getID() == id) {
             if (it->second >= qtd) {
@@ -85,7 +89,7 @@ bool Estoque::removerProduto(int id, int qtd){
                     arquivo << p.first.getID() << " " 
                             << p.first.getName() << " " 
                             << std::fixed << std::setprecision(2) << p.first.getPreco() << " "
-                            << p.second << " unidades"
+                            << p.second << " " << p.first.getUnidade()
                             << std::endl;
                 }
 
@@ -123,10 +127,20 @@ void Estoque::listarProdutos() const{
     std::cout << "Produtos em estoque:\n";
     for (const auto& pair : produtos) {
         const Produto& produto = pair.first;
-        int quantidade = pair.second;
+        double quantidade = pair.second;
         std::cout << "ID: " << produto.getID() 
                   << ", Nome: " << produto.getName() 
                   << ", Preco: " << Produto::formatPreco(produto.getPreco()) 
-                  << ", Quantidade: " << quantidade << std::endl;
+                  << ", Quantidade: " << quantidade << " " << produto.getUnidade()
+                  << std::endl;
     }
+}
+
+double Estoque::getQuantidade(int id) const{
+    for(const auto& pair : produtos){
+        if(pair.first.getID() == id){
+            return pair.second;
+        }
+    }
+    return -1;
 }
