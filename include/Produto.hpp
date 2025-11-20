@@ -12,11 +12,15 @@ class Produto{
         double preco;
         int id;
         bool disponivel;
+        std::string unidade;
 
     public:
-        Produto(std::string nome, double preco, int id) : 
-            nome(nome), preco(preco), id(id), disponivel(true) {}
-        ~Produto() {};
+        Produto(std::string nome, double preco, int id, std::string unidade = "U") : 
+            nome(nome), preco(preco), id(id), disponivel(true), unidade(unidade) {}
+
+        virtual std::string getUnidade() const;
+
+        virtual ~Produto() {};
 
         static std::string formatPreco(double valor);
 
@@ -31,10 +35,11 @@ class Produto{
         void setDisponivel(bool disponivel);  
 
         void alterarPreco();
-
-        bool operator<(const Produto& other) const {
-            return id < other.id;
+        bool operator<(const Produto& outro) const {
+            return this->id < outro.id;
         }
+        
+
 
 };
 
@@ -43,7 +48,8 @@ class FrutasEVerduras : public Produto{
         double peso;
     public:
         FrutasEVerduras(std::string nome, double preco, int id) :
-            Produto(nome, preco, id) {}
+            Produto(nome, preco, id, "KG") {}
+       
         ~FrutasEVerduras() {};
 
         double getPeso() const;
