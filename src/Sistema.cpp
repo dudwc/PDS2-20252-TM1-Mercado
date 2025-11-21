@@ -282,7 +282,7 @@ bool SistemaFuncionario::verificarLogin(const int id, const std::string& senha){
 
 SistemaCliente::SistemaCliente() {
     std::ifstream arquivoClientes("../arquivos/clientes.txt");
-    if (!arquivo.is_open())
+    if (!arquivo.is_open()) {
         print("Nenhum arquivo de clientes encontrado. Criando um novo... \n");
         return;
     }
@@ -302,7 +302,7 @@ SistemaCliente::SistemaCliente() {
     }
 
     arquivo.close();
-
+}
 
 SistemaCliente::~SistemaCliente() {
     std::ofstream arquivo("../arquivos/clientes.txt", std::ios::trunc);
@@ -411,7 +411,7 @@ Cliente* SistemaCliente::cadastrarCliente() {
     std::cin.ignore();
     std::cin.get();
 
-    return &clientes.back;
+    return &clientes.back();
 }
 
 bool SistemaCliente::verificarLogin(const std::string& cpf) {
@@ -444,4 +444,5 @@ void SistemaCliente::loginCliente(){
         std::cin.get();
     }
 }
+
 
