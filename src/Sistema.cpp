@@ -283,7 +283,7 @@ bool SistemaFuncionario::verificarLogin(const int id, const std::string& senha){
 SistemaCliente::SistemaCliente() {
     std::ifstream arquivoClientes("../arquivos/clientes.txt");
     if (!arquivo.is_open())
-        print("Nenhum arquivo de clientes encontrado. Criando um novo... \n")
+        print("Nenhum arquivo de clientes encontrado. Criando um novo... \n");
         return;
     }
 
@@ -323,10 +323,10 @@ void SistemaCliente::iniciar() {
     int opcao;
     while(true) {
         system("cls");
-        print("---- Menu do Cliente ----\n")
-        print("1. Fazer login.\n");
-        print("2. Fazer cadastro.\n");
-        print("3. Voltar ao menu principal.\n");
+        print("---- Menu do Cliente ----\n");
+        print("1. Fazer login\n");
+        print("2. Fazer cadastro\n");
+        print("3. Voltar ao menu principal\n");
         print("Escolha uma opcao: ");
         std::cin >> opcao;
         switch (opcao) {
@@ -386,14 +386,14 @@ void SistemaCliente::exibirMenu() {
     }
 }
 
-Cliente* SistemaCliente::cadastrarCliente(){
+Cliente* SistemaCliente::cadastrarCliente() {
     std::string nome, cpf;
 
     print("----- Cadastro de Cliente -----");
     print("Digite o nome: ");
     std::cin >> nome;
 
-    print("Digite o CPF: ")
+    print("Digite o CPF: ");
     std::cin >> cpf;
 
     if (verificarLogin(cpf)) { // verificar se o login existe no sistema
@@ -407,11 +407,11 @@ Cliente* SistemaCliente::cadastrarCliente(){
     clientes.emplace_back(nome, cpf);
 
     print ("Cliente cadastrado com sucesso!\n");
-    print ("Pressione ENTER para continuar...")
+    print ("Pressione ENTER para continuar...");
     std::cin.ignore();
     std::cin.get();
 
-    return &clientes.back
+    return &clientes.back;
 }
 
 bool SistemaCliente::verificarLogin(const std::string& cpf) {
@@ -426,7 +426,7 @@ bool SistemaCliente::verificarLogin(const std::string& cpf) {
 void SistemaCliente::loginCliente(){
     std::string cpf;
     print("---- Login do Cliente ----\n");
-    print("Digite seu CPF: ")
+    print("Digite seu CPF: ");
     std:: cin >> cpf;
 
     if (verificarLogin(cpf)) {
@@ -444,3 +444,4 @@ void SistemaCliente::loginCliente(){
         std::cin.get();
     }
 }
+
