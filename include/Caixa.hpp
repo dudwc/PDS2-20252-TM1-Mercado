@@ -10,29 +10,24 @@
 
 class Caixa{
     private:
-        std::string formaPagamento;
-        int usuario;
         Estoque& estoque;
         
         //carrinho: chave=ID do produto e valor=quantd
         std::map<int, double> carrinho;
     
     public:
-        Caixa(int usuario, Estoque &estoque, std::string formaPagamento = "");
+        Caixa(Estoque &estoque);
 
         ~Caixa(){};
         
-        bool cadastrarProduto(const Produto& p, int quantidade);
-
-        bool adicionarItem(const Produto& p,double quantidade=1);
-        bool removerItem(const Produto& p,double quantidade=1);
+        void iniciarCompra();
+        bool adicionarItem(const std::string &nome,double quantidade);
+        bool removerItem(const std::string &nome,double quantidade);
         double exibirTotal() const;
         double calcularTroco(double valorPago) const;
         void exibirCarrinho() const;
-        void gerarNotaFiscal(double valorPago = 0.0) const;
-
-        std::string  getFormaPagamento() const;
-        int getUsuario() const;
+        void gerarNotaFiscal(const std::string& formaPagamento, double valorPago = 0.0) const;
+        void finalizarCompra(const std::string& formaPagamento, double valorPago = 0.0);
 };
 
 #endif
