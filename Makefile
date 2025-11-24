@@ -28,4 +28,6 @@ main: obj/Produto.o obj/Estoque.o obj/Caixa.o obj/main.o
 	${CC} ${CFLAGS} -o main obj/Produto.o obj/Estoque.o obj/Caixa.o obj/main.o
               
 clean:
-	rm -f obj/*.o main
+	del  obj\*.o 2> NUL
+	del  main.exe 2> NUL
+	del  main 2> NUL
