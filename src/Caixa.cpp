@@ -7,59 +7,71 @@
 #include <iomanip>
 
 
-Caixa::Caixa(int usuario, Estoque &estoque, std::string formaPagamento)
-    : formaPagamento(formaPagamento), usuario(usuario), estoque(estoque) {}
+Caixa::Caixa(Estoque &estoque) : estoque(estoque) {}
 
-
-
-std::string Caixa::getFormaPagamento() const{
-        return formaPagamento;
-}
-int Caixa::getUsuario() const{
-        return usuario;
-}
-bool Caixa::cadastrarProduto(const Produto &p, int quantidade){
-        if (this->usuario != 1){
-                std::cout << "Apenas funcionários podem cadastrar novos produtos\n";
-                return false;
-        }else{
-                if (quantidade <= 0){
-                        std::cout << "Erro: quantidade inadequada" << std::endl;
-                        return false;
-                }else{
-                        estoque.adicionarProduto(p, quantidade);
-                        return true;
-                }
-        }
-}
-bool Caixa::adicionarItem(const Produto &p, double quantidade){
+bool Caixa::adicionarItem(const std::string &nome, double quantidade){
         if (quantidade <= 0){
                 std::cout << "Quantidade inválida.\n";
                 return false;
         }
-        if (carrinho.find(p.getID()) != carrinho.end()){ 
-                carrinho[p.getID()] += quantidade;
-        }else{
-                carrinho[p.getID()] = quantidade;
-        }
-        return true;
-}
-bool Caixa::removerItem(const Produto &p, double quantidade){
-        if (carrinho.find(p.getID()) == carrinho.end()){
+        const Produto* p = estoque.buscarNome(nome);
+        if(p == nullptr){
+                std::cout << "Produto não encontrado.\n";
                 return false;
         }
-        if (quantidade >= carrinho[p.getID()]){
-                carrinho.erase(p.getID());
+        int id = p->getID();
+        //checando estoque:
+        double qtdDisponivel = estoque.getQuantidade(id);
+
+        if(qtdDisponivel <= 0){
+                std::cout << "Produto fora de estoque.\n";
+                return false;
+        }
+        if(quantidade > qtdDisponivel){
+                std::cout << "Quantidade indisponivel. Estoque atual:" << qtdDisponivel << "\n";
+                return false;
+
+        }
+        if (carrinho.find(id) != carrinho.end()){ // verifica se já tem outras unidades no carrinho
+                        carrinho[id] += quantidade;
+                }else{
+                        carrinho[id] = quantidade;
+                }
+                std::cout << "Item adicionado com sucesso.\n";
+                return true;
+}
+
+
+bool Caixa::removerItem(const std::string &nome, double quantidade){
+        if (quantidade <= 0){
+                std::cout << "Quantidade inválida.\n";
+                return false;
+        }
+        const Produto* p =estoque.buscarNome(nome);
+        if(p == nullptr){
+                std::cout << "Produto não encontrado./n";
+                return false;
+        }
+
+        int id = p->getID();
+
+        if (carrinho.find(id) == carrinho.end()){
+                std::cout << "Este produto não está no carrinho./n";
+                return false;
+        }
+        if (quantidade >= carrinho[id]){
+                carrinho.erase(id);
         }else{
-                carrinho[p.getID()] -= quantidade;
+                carrinho[id] -= quantidade;
         }
         return true;
 }
+
 double Caixa::exibirTotal() const{
         double total = 0.0;
         for (auto it = carrinho.begin(); it != carrinho.end(); it++){
                 int chave = it->first;         
-                double quantidade = it->second;
+                double quantidade = it->second; 
                 const Produto *p = estoque.buscarID(chave);
                 if (p != nullptr){
                         total += p->getPreco() * quantidade;
@@ -69,6 +81,7 @@ double Caixa::exibirTotal() const{
         }
         return total;
 }
+
 void Caixa::exibirCarrinho() const{
         if (carrinho.empty()){
                 std::cout << "Carrinho vazio.\n";
@@ -85,14 +98,16 @@ void Caixa::exibirCarrinho() const{
                 }
         }
 }
+
 double Caixa::calcularTroco(double valorPago) const{
         double total = exibirTotal();
         double troco = valorPago - total;
         return troco;
 }
-void Caixa::gerarNotaFiscal(double valorPago) const{
+
+void Caixa::gerarNotaFiscal(const std::string& formaPagamento, double valorPago) const{
         std::cout << "=========================================\n";
-        std::cout << "            SUPERTOP          \n";
+        std::cout << "            MERCADO         \n";
         std::cout << "=========================================\n";
         std::cout << std::left << std::setw(20) << "PRODUTO"
                   << std::setw(10) << "QTD"
@@ -125,4 +140,84 @@ void Caixa::gerarNotaFiscal(double valorPago) const{
         std::cout << "=========================================\n";
         std::cout << "           VOLTE SEMPRE! :D              \n";
         std::cout << "=========================================\n";
+}
+
+void Caixa::finalizarCompra(const std::string& formaPagamento, double valorPago){
+
+        if(formaPagamento == "Dinheiro"){
+                double troco = calcularTroco(valorPago);
+                if(troco < 0){
+                        std::cout<< "Valor insuficiente\n";
+                        return;
+                }
+        }
+        for(const auto& par : carrinho){//atualizando estoque pós compras
+                int id = par.first;
+                double qtd = par.second;
+                estoque.removerProduto(id, qtd);
+        }
+        gerarNotaFiscal(formaPagamento, valorPago);
+        carrinho.clear();
+
+}
+
+void Caixa::iniciarCompra(){
+        int op = 0;
+        while(op != 4){
+                std::cout << "1. Adicionar item\n2. Remover item\n3. Exibir carrinho\n4. Finalizar compra\nEscolha uma opcao: ";
+                std::cin >> op;
+
+                switch (op){
+                case 1:{
+                        std::string nome;
+                        double qtd;
+                        std::cout << "Digite o nome do produto e a quantidade para adicionar no carrinho: ";
+                        std::cin>> nome >> qtd;
+                        adicionarItem(nome,qtd);
+                        break;
+                }
+
+                case 2:{
+                        std::string nome;
+                        double qtd;
+                        std::cout << "Digite o nome do produto e a quantidade para remover no carrinho: ";
+                        std::cin>> nome >> qtd;
+                        removerItem(nome,qtd);
+                        break;
+                }
+
+                case 3:{
+                        exibirCarrinho();
+                        double total = exibirTotal();
+                        std::cout << std::fixed << std::setprecision(2);
+                        std::cout << "Total da compra: R$ " << total << std::endl;
+                        std::cout << "Pressione ENTER para continuar...";
+                        std::cin.ignore();
+                        std::cin.get();
+                        break;
+                }
+
+                case 4:{
+                        std::string formaPagamento;
+                        std::cout << "Digite a forma de pagamento (dinheiro/cartao/pix): ";
+                        std::cin>> formaPagamento;
+
+                        if(formaPagamento == "Dinheiro" || formaPagamento == "dinheiro" ){
+                                double valorPago;
+                                std::cout << "Digite o valor a pagar:";
+                                std::cin>> valorPago;
+                                finalizarCompra(formaPagamento, valorPago);
+                        }else{
+                                finalizarCompra(formaPagamento);
+                        }
+                        break;
+                }
+                
+                default:{
+                        std::cout << "Opcao invalida. Tente novamente.\n";
+                        break;
+                        }
+                }
+        }
+
 }
