@@ -173,9 +173,9 @@ void SistemaFuncionario::exibirMenu() {
             case 1:
                 system("cls");
                 print("Sistema em manutencao\n");
-                print("1. Voltar.\n");
-                print("Escolha uma opcao: ");
-                std::cin >> opcao;
+                print("Pressione ENTER para voltar.");
+                std::cin.ignore();
+                std::cin.get();
                 break;
             case 2:
                 system("cls");
@@ -240,9 +240,9 @@ Funcionario* SistemaFuncionario::cadastrarFuncionario(){
     salvarProximoID();
     
     print("Funcionario cadastrado com sucesso! ID: " + std::to_string(id) + "\n");
-    print("Pressione 1 para continuar: ");
-    int i;
-    std::cin >> i;
+    print("Pressione ENTER para continuar.");
+    std::cin.ignore();
+    std::cin.get();
     
     return &funcionarios.back();
 }
@@ -282,7 +282,7 @@ bool SistemaFuncionario::verificarLogin(const int id, const std::string& senha){
 
 SistemaCliente::SistemaCliente() {
     std::ifstream arquivoClientes("../arquivos/clientes.txt");
-    if (!arquivo.is_open()) {
+    if (!arquivoClientes.is_open()) {
         print("Nenhum arquivo de clientes encontrado. Criando um novo... \n");
         return;
     }
