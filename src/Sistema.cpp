@@ -281,8 +281,8 @@ bool SistemaFuncionario::verificarLogin(const int id, const std::string& senha){
 //============================= SistemaCliente ============================//
 
 SistemaCliente::SistemaCliente() {
-    std::ifstream arquivoClientes("../arquivos/clientes.txt");
-    if (!arquivoClientes.is_open()) {
+    std::ifstream arquivo("../arquivos/clientes.txt");
+    if (!arquivo.is_open()) {
         print("Nenhum arquivo de clientes encontrado. Criando um novo... \n");
         return;
     }
@@ -368,7 +368,7 @@ void SistemaCliente::exibirMenu() {
                 break;
             case 2:
                 system("cls");
-                print("Sistema de hsitórico em manutencao.\n");
+                print("Sistema de histórico em manutencao.\n");
                 print("Pressione ENTER para voltar. ");
                 std::cin.ignore();
                 std::cin.get();
