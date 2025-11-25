@@ -2,7 +2,6 @@
 #include <cstdlib>  // Para std::exit
 #include <fstream>
 #include <sstream>
-#include "Sistema.hpp"
 //============================= Sistema ============================//
 
 Sistema::Sistema() {}
@@ -172,7 +171,7 @@ void SistemaFuncionario::exibirMenu() {
         switch (opcao) {
             case 1:
                 system("cls");
-                print("Sistema em manutencao\n");
+                estoque.listarProdutos();
                 print("Pressione ENTER para voltar.");
                 std::cin.ignore();
                 std::cin.get();
@@ -389,7 +388,7 @@ void SistemaCliente::exibirMenu() {
 Cliente* SistemaCliente::cadastrarCliente() {
     std::string nome, cpf;
 
-    print("----- Cadastro de Cliente -----");
+    print("----- Cadastro de Cliente -----\n");
     print("Digite o nome: ");
     std::cin >> nome;
 
