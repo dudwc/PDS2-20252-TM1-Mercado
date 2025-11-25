@@ -62,6 +62,10 @@ link para o html gerado: https://dudwc.github.io/PDS2-20252-TM1-Mercado/
 - https://youtu.be/nUQKr-ey86Y?si=SKlJSceKTZR9aiMI - CFBCursos
 - https://runestone.academy/ns/books/published/thinkcpp/index.html
 - https://www.kufunda.net/publicdocs/C++%20Como%20Programar%20-%205%C2%AA%20Edi%C3%A7%C3%A3o.pdf
+  
+-  https://dev.to/dyhalmeida/para-que-serve-o-gitignore-e-o-gitkeep-39ln
+-  https://learn.microsoft.com/pt-br/troubleshoot/developer/visualstudio/cpp/language-compilers/redirecting-error-command-prompt
+
 
 ## 👥 Grupo 5
 - Guilherme Prado
