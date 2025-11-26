@@ -11,12 +11,12 @@ Caixa::Caixa(Estoque &estoque) : estoque(estoque) {}
 
 bool Caixa::adicionarItem(const std::string &nome, double quantidade){
         if (quantidade <= 0){
-                std::cout << "Quantidade inválida.\n";
+                std::cerr << "Quantidade inválida.\n";
                 return false;
         }
         const Produto* p = estoque.buscarNome(nome);
         if(p == nullptr){
-                std::cout << "Produto não encontrado.\n";
+                std::cerr << "Produto não encontrado.\n";
                 return false;
         }
         int id = p->getID();
@@ -24,7 +24,7 @@ bool Caixa::adicionarItem(const std::string &nome, double quantidade){
         double qtdDisponivel = estoque.getQuantidade(id);
 
         if(qtdDisponivel <= 0){
-                std::cout << "Produto fora de estoque.\n";
+                std::cerr << "Produto fora de estoque.\n";
                 return false;
         }
         if(quantidade > qtdDisponivel){
@@ -44,19 +44,19 @@ bool Caixa::adicionarItem(const std::string &nome, double quantidade){
 
 bool Caixa::removerItem(const std::string &nome, double quantidade){
         if (quantidade <= 0){
-                std::cout << "Quantidade inválida.\n";
+                std::cerr << "Quantidade inválida.\n";
                 return false;
         }
         const Produto* p =estoque.buscarNome(nome);
         if(p == nullptr){
-                std::cout << "Produto não encontrado./n";
+                std::cerr << "Produto não encontrado./n";
                 return false;
         }
 
         int id = p->getID();
 
         if (carrinho.find(id) == carrinho.end()){
-                std::cout << "Este produto não está no carrinho./n";
+                std::cerr << "Este produto não está no carrinho.\n";
                 return false;
         }
         if (quantidade >= carrinho[id]){
@@ -76,7 +76,7 @@ double Caixa::exibirTotal() const{
                 if (p != nullptr){
                         total += p->getPreco() * quantidade;
                 }else{
-                        std::cout << "Produto com ID:" << chave << " não encontrado" << std::endl;
+                        std::cerr << "Produto com ID:" << chave << " não encontrado" << std::endl;
                 }
         }
         return total;
@@ -94,7 +94,7 @@ void Caixa::exibirCarrinho() const{
                 if (p != nullptr){
                         std::cout << std::left << std::setw(20) << p->getName() << par.second << std::endl;
                 }else{
-                        std::cout << "Produto com código " << chave << " não encontrado no estoque!" << std::endl;
+                        std::cerr << "Produto com código " << chave << " não encontrado no estoque!" << std::endl;
                 }
         }
 }
@@ -147,7 +147,7 @@ void Caixa::finalizarCompra(const std::string& formaPagamento, double valorPago)
         if(formaPagamento == "Dinheiro"){
                 double troco = calcularTroco(valorPago);
                 if(troco < 0){
-                        std::cout<< "Valor insuficiente\n";
+                        std::cerr<< "Valor insuficiente\n";
                         return;
                 }
         }
@@ -219,7 +219,7 @@ void Caixa::iniciarCompra(){
                 }
                 
                 default:{
-                        std::cout << "Opcao invalida. Tente novamente.\n";
+                        std::cerr << "Opcao invalida. Tente novamente.\n";
                         break;
                         }
                 }
