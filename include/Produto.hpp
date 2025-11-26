@@ -48,7 +48,7 @@ class FrutasEVerduras : public Produto{
         double peso;
     public:
         FrutasEVerduras(std::string nome, double preco, int id) :
-            Produto(nome, preco, id, "KG") {}
+            Produto(nome, preco, id, "KG"), peso(0.0) {}
        
         ~FrutasEVerduras() {};
 
