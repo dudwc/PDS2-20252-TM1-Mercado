@@ -111,7 +111,7 @@ void Caixa::gerarNotaFiscal(const std::string& formaPagamento, double valorPago)
         std::cout << "=========================================\n";
         std::cout << std::left << std::setw(20) << "PRODUTO"
                   << std::setw(10) << "QTD"
-                  << std::setw(10) << "PREÇO" << std::endl;
+                  << std::setw(10) << "PRECO" << std::endl;
         std::cout << "-----------------------------------------\n";
         for (const auto &par : carrinho){
                 int codigo = par.first;
