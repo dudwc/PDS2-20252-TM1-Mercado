@@ -1,2 +1,7 @@
-1 Banana 5.99 25 unidades
-2 Maca 3.49 61 unidades
+42 Alcool 6.00 15.00 U
+62 Pessego 9.98 13.54 KG
+59 Biscoito 3.18 30.00 U
+63 Maca 6.27 16.40 Kg
+58 Sabonete 5.00 20.00 U
+36 Feijao 8.32 20.00 U
+64 Shampoo 8.99 20.00 U
