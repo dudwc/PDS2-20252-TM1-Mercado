@@ -229,17 +229,21 @@ void SistemaFuncionario::menuEstoque() {
                 print("Quantidade: ");
                 std::cin >> quantidade;
 
-                // CORREÇÃO: Gerar novo ID corretamente
                 int maiorID = 0;
                 for (const auto& par : estoque.getProdutos()) {
-                    if (par.first.getID() > maiorID) {
-                        maiorID = par.first.getID();
+                    if (par.first->getID() > maiorID) {
+                        maiorID = par.first->getID();
                     }
                 }
                 id = maiorID + 1;
 
-                Produto novoProduto(nome, preco, id, unidade);
-                estoque.adicionarProduto(novoProduto, quantidade);
+                if (unidade == "KG") {
+                    FrutasEVerduras* produto = new FrutasEVerduras(nome, preco, id);
+                    estoque.adicionarProduto(produto, quantidade);
+                } else {
+                    Produto* produto = new Produto(nome, preco, id, unidade);
+                    estoque.adicionarProduto(produto, quantidade);
+                }
 
                 print("Produto adicionado com sucesso!\n");
                 print("Pressione ENTER para continuar.");
@@ -247,9 +251,20 @@ void SistemaFuncionario::menuEstoque() {
                 std::cin.get();
                 break;
             }
-            case 3:
-                system("cls");
-                // Implementar remover produto
+            case 3:{
+                    system("cls");
+                    estoque.listarProdutos();
+                    int id;
+                    double quantidade;
+                    print("Digite o ID do produto a ser removido: ");
+                    std::cin >> id;
+                    print("Digite a quantidade a ser removida: ");
+                    std::cin >> quantidade;
+                    estoque.removerProduto(id, quantidade);
+                    print("Pressione ENTER para continuar.");
+                    std::cin.ignore();
+                    std::cin.get();
+                }
                 break;
             case 4:
                 return;

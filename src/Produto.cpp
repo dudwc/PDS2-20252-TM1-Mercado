@@ -44,6 +44,10 @@ void Produto::setDisponivel(bool disponivel){
     this->disponivel = disponivel;
 }
 
+void Produto::setUnidade(std::string novaUnidade){
+    unidade = novaUnidade;
+}
+
 void Produto::alterarPreco(){
     std::cout << "Preco atual: " << formatPreco(preco) << std::endl;
     double novoPreco;
