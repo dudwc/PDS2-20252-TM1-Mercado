@@ -20,7 +20,6 @@ class Caixa{
 
         ~Caixa(){};
         
-        void iniciarCompra();
         bool adicionarItem(const std::string &nome,double quantidade);
         bool removerItem(const std::string &nome,double quantidade);
         double exibirTotal() const;

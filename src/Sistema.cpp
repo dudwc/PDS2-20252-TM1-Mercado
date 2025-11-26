@@ -1,8 +1,8 @@
-
-#include "../include/Sistema.hpp"
+#include "Sistema.hpp"
 #include <cstdlib>  // Para std::exit
 #include <fstream>
 #include <sstream>
+#include <iomanip>
 //============================= Sistema ============================//
 
 Sistema::Sistema() {}
@@ -440,13 +440,83 @@ void SistemaCliente::exibirMenu() {
         print("Escolha uma opcao: ");
         std::cin >> opcao;
         switch (opcao) {
-            case 1:
+            case 1:{
                 system("cls");
-                print("Sistema de compras em manutencao.\n");
-                print("Pressione ENTER para voltar.");
-                std::cin.ignore();
-                std::cin.get();
+                Caixa caixa(estoque);
+
+                int op = 0;
+                while(op != 5){
+                    system("cls");
+                    print("1. Adicionar item\n");
+                    print("2. Remover item\n");
+                    print("3. Exibir carrinho\n");
+                    print("4. Finalizar compra\n");
+                    print("5. Voltar ao menu anterior\n");
+                    print("Escolha uma opcao: ");
+                    std::cin >> op;
+
+                    switch(op){
+                        case 1: {
+                            std::string nome;
+                            double qtd;
+                            print("Digite o nome do produto e a quantidade para adicionar no carrinho: ");
+                            std::cin>> nome >> qtd;
+                            caixa.adicionarItem(nome,qtd);
+                            print("Pressione ENTER para continuar...");
+                            std::cin.ignore();
+                            std::cin.get();
+                            break;
+                        }
+                        case 2: {
+                            std::string nome;
+                            double qtd;
+                            print("Digite o nome do produto e a quantidade para remover: ");
+                            std::cin >> nome >> qtd;
+                            caixa.removerItem(nome, qtd);
+                            print("Pressione ENTER para continuar...");
+                            std::cin.ignore();
+                            std::cin.get();
+                            break;
+                        }
+                        case 3: {
+                            caixa.exibirCarrinho();
+                            double total = caixa.exibirTotal();
+                            std::cout << std::fixed << std::setprecision(2);
+                            std::cout << "Total da compra: R$ " << total << std::endl;
+                            print("Pressione ENTER para continuar...");
+                            std::cin.ignore();
+                            std::cin.get();
+                            break;
+                        }
+                        case 4: {
+                            std::string formaPagamento;
+                            print("Digite a forma de pagamento (dinheiro/cartao/pix): ");
+                            std::cin >> formaPagamento;
+
+                            if(formaPagamento == "dinheiro" || formaPagamento == "Dinheiro") {
+                                double valorPago;
+                                print("Digite o valor a pagar: ");
+                                std::cin >> valorPago;
+                                caixa.finalizarCompra(formaPagamento, valorPago);
+                            } else {
+                                caixa.finalizarCompra(formaPagamento);
+                            }
+                            print("Pressione ENTER para continuar...");
+                            std::cin.ignore();
+                            std::cin.get();
+                            break;
+                        }
+                        case 5: 
+                            print("Voltando ao menu anterior...\n");
+                                break;
+                            default:
+                                print("Opcao invalida. Tente novamente.\n");
+                                break;
+                    }
+
+                }
                 break;
+            }
             case 2:
                 system("cls");
                 print("Sistema de histórico em manutencao.\n");
