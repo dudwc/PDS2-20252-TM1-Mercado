@@ -53,6 +53,13 @@ void Produto::alterarPreco(){
     std::cout << "Operacao confirmada.\n";
 }
 
+bool Produto::operator<(const Produto& outro) const {
+    return this->nome < outro.nome;
+}
+
+
+//============================= FrutasEVerduras ============================//
+
 double FrutasEVerduras::getPeso() const{
     return peso;
 }

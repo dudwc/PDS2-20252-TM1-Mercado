@@ -3,9 +3,9 @@
 #include <sstream>
 
 Estoque::Estoque(){
-    arquivo.open("../arquivos/estoque.txt", std::ios::in);
+    arquivo.open("arquivos/estoque.txt", std::ios::in);
     if (!arquivo.is_open()) {
-        std::cout << "Erro ao abrir o arquivo de estoque." << std::endl;
+        print("Erro ao abrir o arquivo de estoque.");
         return;
     }
 
@@ -19,7 +19,7 @@ Estoque::Estoque(){
         std::string tipo;
 
         if (!(iss >> id >> nome >> preco >> quantidade >> tipo)) {
-            std::cout << "Erro ao ler a linha do arquivo: " << linha << std::endl;
+            print("Erro ao ler a linha do arquivo: ");
             continue; // Pula para a próxima linha em caso de erro
         }
 
@@ -27,6 +27,10 @@ Estoque::Estoque(){
         if(tipo == "KG"){
             produto = FrutasEVerduras(nome, preco, id);
         }
+        else{
+            produto = Produto(nome, preco, id);
+        }
+
         produtos[produto] = quantidade;
     }
 
@@ -35,7 +39,7 @@ Estoque::Estoque(){
 
 Estoque::Estoque(const std::map<Produto, double>& produtos) : 
     produtos(produtos) {
-    arquivo.open("estoque.txt", std::ios::out | std::ios::trunc);
+    arquivo.open("arquivos/estoque.txt", std::ios::out | std::ios::trunc);
     if (!arquivo.is_open()) {
         std::cout << "Erro ao abrir o arquivo de estoque para escrita." << std::endl;
         return;
@@ -52,9 +56,24 @@ Estoque::Estoque(const std::map<Produto, double>& produtos) :
     arquivo.close();
 }
 
+void Estoque::print(std::string texto) {
+    int delay_milliseconds = 1; // tempo de atraso entre cada caractere
+
+    for (char c : texto) {
+        std::cout << c << std::flush; // imprime caractere e limpa o buffer
+        std::this_thread::sleep_for(std::chrono::milliseconds(delay_milliseconds)); // funcao de atraso
+    }
+}
+
 void Estoque::adicionarProduto(const Produto& produto, double qtd) {
-    produtos[produto] += qtd;
-    arquivo.open("estoque.txt", std::ios::out | std::ios::trunc);
+    auto it = produtos.find(produto);
+    if (it != produtos.end()) {
+        it->second += qtd;
+    } else {
+        produtos[produto] = qtd;
+    }
+    
+    arquivo.open("arquivos/estoque.txt", std::ios::out | std::ios::trunc);
     if (!arquivo.is_open()) {
         std::cout << "Erro ao abrir o arquivo." << std::endl;
         return;
@@ -79,7 +98,7 @@ bool Estoque::removerProduto(int id, double qtd){
                 if (it->second == 0) {
                     produtos.erase(it);
                 }
-                arquivo.open("estoque.txt", std::ios::out | std::ios::trunc);
+                arquivo.open("arquivos/estoque.txt", std::ios::out | std::ios::trunc);
                 if (!arquivo.is_open()) {
                     std::cout << "Erro ao abrir o arquivo." << std::endl;
                     return false;
@@ -96,12 +115,12 @@ bool Estoque::removerProduto(int id, double qtd){
                 arquivo.close();
                 return true;
             } else {
-                std::cout << "Quantidade insuficiente em estoque." << std::endl;
+                print("Quantidade insuficiente em estoque.");
                 return false;
             }
         }
     }
-    std::cout << "Produto com ID " << id << " nao encontrado." << std::endl;
+    print("Produto com ID " + std::to_string(id) + " nao encontrado.");
     return false;
 }
 
@@ -123,17 +142,21 @@ const Produto* Estoque::buscarNome(const std::string& nome){
     return nullptr;
 }
 
-void Estoque::listarProdutos() const{
-    std::cout << "Produtos em estoque:\n";
+void Estoque::listarProdutos(){
+    print("----- Produtos no Estoque -----\n");
     for (const auto& pair : produtos) {
         const Produto& produto = pair.first;
         double quantidade = pair.second;
-        std::cout << "ID: " << produto.getID() 
-                  << ", Nome: " << produto.getName() 
-                  << ", Preco: " << Produto::formatPreco(produto.getPreco()) 
-                  << ", Quantidade: " << quantidade << " " << produto.getUnidade()
+        std::cout << produto.getName() 
+                  << "\t//\tPreco: " << Produto::formatPreco(produto.getPreco()) 
+                  << "\t//\tQuantidade: " << quantidade << " " << produto.getUnidade()
+                  << "\t//\tID: " << produto.getID()
                   << std::endl;
     }
+}
+
+std::map<Produto, double> Estoque::getProdutos() const{
+    return produtos;
 }
 
 double Estoque::getQuantidade(int id) const{

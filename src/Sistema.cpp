@@ -1,3 +1,4 @@
+
 #include "../include/Sistema.hpp"
 #include <cstdlib>  // Para std::exit
 #include <fstream>
@@ -21,7 +22,7 @@ void Sistema::carregar() {
     int delay_milliseconds = 30; // tempo de atraso entre cada caractere
 
     print("CARREGANDO");
-    for (char c : ".......................................\n") {
+    for (char c : "...................................\n") {
         std::cout << c << std::flush; // imprime caractere e limpa o buffer
         std::this_thread::sleep_for(std::chrono::milliseconds(delay_milliseconds)); // funcao de atraso
     }
@@ -100,6 +101,8 @@ void Sistema::exibirMenu(){
     };
 }
 
+void Sistema::menuEstoque() {}
+
 //============================= SistemaFuncionario ============================//
 
 int SistemaFuncionario::proximoIDFuncionario = 3974;
@@ -171,10 +174,7 @@ void SistemaFuncionario::exibirMenu() {
         switch (opcao) {
             case 1:
                 system("cls");
-                estoque.listarProdutos();
-                print("Pressione ENTER para voltar.");
-                std::cin.ignore();
-                std::cin.get();
+                menuEstoque();
                 break;
             case 2:
                 system("cls");
@@ -191,6 +191,73 @@ void SistemaFuncionario::exibirMenu() {
                 break;
         }
 
+    }
+}
+
+void SistemaFuncionario::menuEstoque() {
+    int opcao;
+    while(true) {
+        system("cls");
+        print("--- Menu de Estoque ---\n");
+        print("1. Listar produtos\n");
+        print("2. Adicionar produto\n");
+        print("3. Remover produto\n");
+        print("4. Voltar\n");
+        print("Escolha uma opcao: ");
+        std::cin >> opcao;
+        switch (opcao) {
+            case 1:
+                system("cls");
+                estoque.listarProdutos();
+                print("Pressione ENTER para voltar.");
+                std::cin.ignore();
+                std::cin.get();
+                break;
+            case 2:{
+                std::string nome, unidade;
+                double preco, quantidade;
+                int id;
+
+                system("cls");
+                print("Adicionar novo produto ao estoque\n");
+                print("Nome: ");
+                std::cin >> nome;
+                print("Preco: ");
+                std::cin >> preco;
+                print("Unidade de medida (U para unidade, KG para quilo): ");
+                std::cin >> unidade;
+                print("Quantidade: ");
+                std::cin >> quantidade;
+
+                // CORREÇÃO: Gerar novo ID corretamente
+                int maiorID = 0;
+                for (const auto& par : estoque.getProdutos()) {
+                    if (par.first.getID() > maiorID) {
+                        maiorID = par.first.getID();
+                    }
+                }
+                id = maiorID + 1;
+
+                Produto novoProduto(nome, preco, id, unidade);
+                estoque.adicionarProduto(novoProduto, quantidade);
+
+                print("Produto adicionado com sucesso!\n");
+                print("Pressione ENTER para continuar.");
+                std::cin.ignore();
+                std::cin.get();
+                break;
+            }
+            case 3:
+                system("cls");
+                // Implementar remover produto
+                break;
+            case 4:
+                return;
+            default:
+                system("cls");
+                print("Opcao invalida. Tente novamente.\n");
+                break;
+        }
     }
 }
 
@@ -280,7 +347,7 @@ bool SistemaFuncionario::verificarLogin(const int id, const std::string& senha){
 //============================= SistemaCliente ============================//
 
 SistemaCliente::SistemaCliente() {
-    std::ifstream arquivo("../arquivos/clientes.txt");
+    std::ifstream arquivo("arquivos/clientes.txt");
     if (!arquivo.is_open()) {
         print("Nenhum arquivo de clientes encontrado. Criando um novo... \n");
         return;
@@ -304,7 +371,7 @@ SistemaCliente::SistemaCliente() {
 }
 
 SistemaCliente::~SistemaCliente() {
-    std::ofstream arquivo("../arquivos/clientes.txt", std::ios::trunc);
+    std::ofstream arquivo("arquivos/clientes.txt", std::ios::trunc);
 
     if (!arquivo.is_open()) {
         print("Erro ao salvar clientes no arquivo. \n");
@@ -383,6 +450,10 @@ void SistemaCliente::exibirMenu() {
                 break;
         }
     }
+}
+
+void SistemaCliente::menuEstoque() {
+    
 }
 
 Cliente* SistemaCliente::cadastrarCliente() {
