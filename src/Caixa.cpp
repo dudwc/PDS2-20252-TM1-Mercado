@@ -163,8 +163,8 @@ void Caixa::finalizarCompra(const std::string& formaPagamento, double valorPago)
 
 void Caixa::iniciarCompra(){
         int op = 0;
-        while(op != 4){
-                std::cout << "1. Adicionar item\n2. Remover item\n3. Exibir carrinho\n4. Finalizar compra\nEscolha uma opcao: ";
+        while(op != 5){
+                std::cout << "1. Adicionar item\n2. Remover item\n3. Exibir carrinho\n4. Finalizar compra\n5. Voltar ao menu anterior\nEscolha uma opcao: ";
                 std::cin >> op;
 
                 switch (op){
@@ -211,6 +211,11 @@ void Caixa::iniciarCompra(){
                                 finalizarCompra(formaPagamento);
                         }
                         break;
+                }
+
+                case 5:{
+                        std::cout << "Voltando ao menu anterior...\n";
+                        return;   
                 }
                 
                 default:{
