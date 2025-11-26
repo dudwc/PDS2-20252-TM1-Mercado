@@ -32,7 +32,8 @@ class Produto{
         void setName(std::string novoNome);
         void setPreco(double novoPreco);
         void setID(int novoID);
-        void setDisponivel(bool disponivel);  
+        void setDisponivel(bool disponivel);
+        void setUnidade(std::string novaUnidade);
 
         void alterarPreco();
         bool operator<(const Produto& outro) const;
