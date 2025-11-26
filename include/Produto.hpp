@@ -35,9 +35,7 @@ class Produto{
         void setDisponivel(bool disponivel);  
 
         void alterarPreco();
-        bool operator<(const Produto& outro) const {
-            return this->id < outro.id;
-        }
+        bool operator<(const Produto& outro) const;
         
 
 
@@ -48,7 +46,7 @@ class FrutasEVerduras : public Produto{
         double peso;
     public:
         FrutasEVerduras(std::string nome, double preco, int id) :
-            Produto(nome, preco, id, "KG"), peso(0.0) {}
+            Produto(nome, preco, id, "KG") {}
        
         ~FrutasEVerduras() {};
 
