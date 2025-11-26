@@ -24,6 +24,7 @@ class Sistema {
 
         virtual void iniciar();
         virtual void exibirMenu();
+        virtual void menuEstoque();
         void exibirLogo();
         void print(std::string texto);
         void carregar();
@@ -41,6 +42,7 @@ class SistemaFuncionario : public Sistema {
 
         void iniciar() override;
         void exibirMenu() override;
+        void menuEstoque() override;
         Funcionario* cadastrarFuncionario();
         void loginFuncionario();
         bool verificarLogin(const int id, const std::string& senha);
@@ -58,6 +60,7 @@ class SistemaCliente : public Sistema {
 
         void iniciar() override;
         void exibirMenu() override;
+        void menuEstoque() override;
 
         Cliente* cadastrarCliente();
         void loginCliente(); // logar usando o CPF
@@ -66,5 +69,4 @@ class SistemaCliente : public Sistema {
 };
 
 #endif 
-
 
