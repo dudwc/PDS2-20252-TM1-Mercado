@@ -3,5 +3,7 @@
 59 Biscoito 3.18 30.00 U
 63 Maca 6.27 16.40 Kg
 58 Sabonete 5.00 20.00 U
+65 Miojo 8.00 12.00 U
 36 Feijao 8.32 20.00 U
 64 Shampoo 8.99 20.00 U
+66 Cafe 30.00 20.00 U

@@ -130,10 +130,6 @@ SistemaFuncionario::SistemaFuncionario() {
         }
     }
     arquivoFuncionarios.close();
-
-    /*while(std::getline(arquivoClientes, linha)) {
-        // Implementar leitura de clientes
-    }*/
 }
 
 SistemaFuncionario::~SistemaFuncionario() {}
@@ -365,13 +361,16 @@ SistemaCliente::SistemaCliente() : clienteLogado(nullptr){
     std::ifstream arquivoClientes("arquivos/clientes.txt");
     if (!arquivoClientes.is_open()) return;
 
-    std::string linha, nome, cpf;
+    std::string linha, cpf, nome;
     while (std::getline(arquivoClientes, linha)) {
+        if (linha.empty()) continue;
+        
         std::istringstream iss(linha);
-        if(iss >> cpf) {
+        if(iss >> cpf >> std::ws) {
             std::getline(iss, nome);
-            if(!nome.empty() && nome[0] == ' ') nome.erase(0, 1);
-            clientes.emplace_back(nome, cpf);
+            if(!nome.empty()) {
+                clientes.emplace_back(nome, cpf);
+            }
         }
     }
     arquivoClientes.close();
@@ -604,12 +603,25 @@ Cliente* SistemaCliente::cadastrarCliente() {
         return nullptr;
     }
 
-    clientes.emplace_back(nome, cpf);
+    std::ofstream arquivoSaida("arquivos/clientes.txt", std::ios::trunc); //bloco adcionado para corrigir a leitura do arquivo de clientes
+    if (arquivoSaida.is_open()) {
+        for (auto& c : clientes) {
+            arquivoSaida << c.getCPF() << " " << c.getNome() << "\n";
+        }
+        arquivoSaida.close();
+    }
 
-    print ("Cliente cadastrado com sucesso!\n");
-    print ("Pressione ENTER...");
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-    std::cin.get();
+    clientes.emplace_back(nome, cpf); //adiciona na memória RAM
+
+    {
+        std::ofstream arquivoSaida("arquivos/clientes.txt", std::ios::app);
+        if (arquivoSaida.is_open()) {
+            arquivoSaida << cpf << " " << nome << "\n";
+            arquivoSaida.close();
+        } else {
+            print("Erro ao abrir clientes.txt para escrita. Cliente cadastrado apenas em memoria.\n");
+        }
+    } 
 
     return &clientes.back();
 }

@@ -131,7 +131,7 @@ void Caixa::gerarNotaFiscal(const std::string& formaPagamento, double valorPago)
                   << "R$ " << std::fixed << std::setprecision(2)
                   << exibirTotal() << std::endl;
         std::cout << std::setw(30)<< "FORMA DE PAGAMENTO: "<< formaPagamento << std::endl;
-        if(formaPagamento == "Dinheiro"){
+        if(formaPagamento == "dinheiro" || formaPagamento == "Dinheiro"){
                 std::cout << std::setw(30)<< "VALOR PAGO:"<< "R$ " << valorPago << std::endl;
                 std::cout << std::setw(30)<<"TROCO:"<< "R$ " << std::fixed << 
                 std::setprecision(2)<< calcularTroco(valorPago) << std::endl;
@@ -144,7 +144,7 @@ void Caixa::gerarNotaFiscal(const std::string& formaPagamento, double valorPago)
 
 void Caixa::finalizarCompra(const std::string& formaPagamento, double valorPago){
 
-        if(formaPagamento == "Dinheiro"){
+        if(formaPagamento == "dinheiro" || formaPagamento == "Dinheiro"){
                 double troco = calcularTroco(valorPago);
                 if(troco < 0){
                         std::cerr<< "Valor insuficiente\n";
