@@ -53,6 +53,7 @@ class SistemaFuncionario : public Sistema {
 class SistemaCliente : public Sistema {
     private:
         std::vector<Cliente> clientes; // lista de clientes armazenados no sistema
+        Cliente* clienteLogado; // guarda quem está logado
 
     public:
         SistemaCliente();
@@ -69,4 +70,5 @@ class SistemaCliente : public Sistema {
 };
 
 #endif 
+
 
