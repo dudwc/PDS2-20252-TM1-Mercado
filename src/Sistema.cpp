@@ -361,42 +361,30 @@ bool SistemaFuncionario::verificarLogin(const int id, const std::string& senha){
 
 //============================= SistemaCliente ============================//
 
-SistemaCliente::SistemaCliente() {
-    std::ifstream arquivo("arquivos/clientes.txt");
-    if (!arquivo.is_open()) {
-        print("Nenhum arquivo de clientes encontrado. Criando um novo... \n");
-        return;
-    }
+SistemaCliente::SistemaCliente() : clienteLogado(nullptr){
+    std::ifstream arquivoClientes("arquivos/clientes.txt");
+    if (!arquivoClientes.is_open()) return;
 
-    std::string linha;
-    std::string nome, cpf;
-
-    while (std::getline(arquivo, linha)) {
+    std::string linha, nome, cpf;
+    while (std::getline(arquivoClientes, linha)) {
         std::istringstream iss(linha);
-
-        if(!(iss >> nome >> cpf)) {
-            print("Falha ao ler cliente: " + linha + "\n");
-            continue;
+        if(iss >> cpf) {
+            std::getline(iss, nome);
+            if(!nome.empty() && nome[0] == ' ') nome.erase(0, 1);
+            clientes.emplace_back(nome, cpf);
         }
-
-        clientes.emplace_back(nome, cpf);
     }
-
-    arquivo.close();
+    arquivoClientes.close();
 }
 
 SistemaCliente::~SistemaCliente() {
-    std::ofstream arquivo("arquivos/clientes.txt", std::ios::trunc);
-
-    if (!arquivo.is_open()) {
-        print("Erro ao salvar clientes no arquivo. \n");
-        return;
+    std::ofstream arquivoSaida("arquivos/clientes.txt", std::ios::trunc);
+    if (arquivoSaida.is_open()) {
+        for (auto& c : clientes) {
+            arquivoSaida << c.getCPF() << " " << c.getNome() << "\n";
+        }
+        arquivoSaida.close();
     }
-
-    for (auto& c : clientes) {
-        arquivo << c.getNome() << " " << c.getCPF() << "\n";
-    }
-    arquivo.close();
 }
 
 
@@ -420,33 +408,39 @@ void SistemaCliente::iniciar() {
                 cadastrarCliente();
                 break;
             case 3:
+                clienteLogado = nullptr;
                 return;
             default:
                 system("cls");
-                print("Opcao invalida. Tente novamente.\n");
+                print("Opcao invalida.\n");
+                std::cin.clear();
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                 break;
         }
     }
 }
 
 void SistemaCliente::exibirMenu() {
+    if(clienteLogado == nullptr) return;
+
     int opcao;
-    while(true) {
+    while(clienteLogado != nullptr) {
         system("cls");
-        print("--- Menu do Cliente ---\n");
+        print("--- Menu do Cliente: " + clienteLogado->getNome() + " ---\n");
         print("1. Fazer compras\n");
         print("2. Ver historico de compras\n");
-        print("3. Sair\n");
+        print("3. Sair (Logout)\n");
         print("Escolha uma opcao: ");
         std::cin >> opcao;
         switch (opcao) {
             case 1:{
                 system("cls");
-                Caixa caixa(estoque);
+                Caixa caixa(estoque); 
 
                 int op = 0;
                 while(op != 5){
                     system("cls");
+                    print("--- Carrinho de Compras ---\n");
                     print("1. Adicionar item\n");
                     print("2. Remover item\n");
                     print("3. Exibir carrinho\n");
@@ -459,10 +453,16 @@ void SistemaCliente::exibirMenu() {
                         case 1: {
                             std::string nome;
                             double qtd;
-                            print("Digite o nome do produto e a quantidade para adicionar no carrinho: ");
-                            std::cin>> nome >> qtd;
-                            caixa.adicionarItem(nome,qtd);
-                            print("Pressione ENTER para continuar...");
+                            print("Digite o nome do produto: ");
+                            std::cin.ignore(); 
+                            std::getline(std::cin, nome);
+                            
+                            print("Digite a quantidade: ");
+                            std::cin >> qtd;
+                            
+                            caixa.adicionarItem(nome, qtd);
+                            
+                            print("Pressione ENTER...");
                             std::cin.ignore();
                             std::cin.get();
                             break;
@@ -470,10 +470,16 @@ void SistemaCliente::exibirMenu() {
                         case 2: {
                             std::string nome;
                             double qtd;
-                            print("Digite o nome do produto e a quantidade para remover: ");
-                            std::cin >> nome >> qtd;
+                            print("Digite o nome do produto para remover: ");
+                            std::cin.ignore();
+                            std::getline(std::cin, nome);
+                            
+                            print("Digite a quantidade: ");
+                            std::cin >> qtd;
+                            
                             caixa.removerItem(nome, qtd);
-                            print("Pressione ENTER para continuar...");
+                            
+                            print("Pressione ENTER...");
                             std::cin.ignore();
                             std::cin.get();
                             break;
@@ -482,16 +488,19 @@ void SistemaCliente::exibirMenu() {
                             caixa.exibirCarrinho();
                             double total = caixa.exibirTotal();
                             std::cout << std::fixed << std::setprecision(2);
-                            std::cout << "Total da compra: R$ " << total << std::endl;
-                            print("Pressione ENTER para continuar...");
+                            std::cout << "Total parcial: R$ " << total << std::endl;
+                            print("Pressione ENTER...");
                             std::cin.ignore();
                             std::cin.get();
                             break;
                         }
                         case 4: {
                             std::string formaPagamento;
-                            print("Digite a forma de pagamento (dinheiro/cartao/pix): ");
-                            std::cin >> formaPagamento;
+                            double totalCompra = caixa.exibirTotal();
+                            
+                            print("Forma de pagamento (dinheiro/cartao/pix): ");
+                            std::cin.ignore();
+                            std::getline(std::cin, formaPagamento);
 
                             if(formaPagamento == "dinheiro" || formaPagamento == "Dinheiro") {
                                 double valorPago;
@@ -501,37 +510,71 @@ void SistemaCliente::exibirMenu() {
                             } else {
                                 caixa.finalizarCompra(formaPagamento);
                             }
+                            
+                            if (totalCompra > 0) {
+                                std::ofstream historico("arquivos/historico.txt", std::ios::app);
+                                if(historico.is_open()) {
+                                    historico << clienteLogado->getCPF() << " comprou R$ " 
+                                              << std::fixed << std::setprecision(2) << totalCompra 
+                                              << " via " << formaPagamento << "\n";
+                                    historico.close();
+                                }
+                            }
+
                             print("Pressione ENTER para continuar...");
                             std::cin.ignore();
                             std::cin.get();
+                            
+                            op = 5; 
                             break;
                         }
                         case 5: 
                             print("Voltando ao menu anterior...\n");
-                                break;
-                            default:
-                                print("Opcao invalida. Tente novamente.\n");
-                                break;
+                            break;
+                        default:
+                            print("Opcao invalida.\n");
+                            std::cin.clear();
+                            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                            break;
                     }
-
                 }
                 break;
             }
             case 2:
                 system("cls");
-                print("Sistema de histórico em manutencao.\n");
-                print("Pressione ENTER para voltar. ");
+                print("---- Historico de Compras ---- \n");
+                {
+                    std::ifstream historico("arquivos/historico.txt");
+                    if(!historico.is_open()) {
+                        print("Sem historico... \n");
+                    } else {
+                        std::string linha;
+                        bool achou = false;
+                        while (std::getline(historico, linha)) {
+                            if (linha.find(clienteLogado->getCPF()) != std::string::npos) {
+                                print(linha + "\n");
+                                achou = true;
+                            }
+                        }
+                        if(!achou) print("Nenhuma compra encontrada para voce.\n");
+                        historico.close();
+                    }
+                }
+                print("\nPressione ENTER para voltar. ");
                 std::cin.ignore();
                 std::cin.get();
                 break;
             case 3:
                 system("cls");
                 print("Saindo...\n");
+                clienteLogado = nullptr;
                 carregar();
                 return;
             default:
                 system("cls");
                 print("Opcao invalida. \n");
+                std::cin.clear();
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                 break;
         }
     }
@@ -546,15 +589,17 @@ Cliente* SistemaCliente::cadastrarCliente() {
 
     print("----- Cadastro de Cliente -----\n");
     print("Digite o nome: ");
-    std::cin >> nome;
+    
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    std::getline(std::cin, nome);
 
     print("Digite o CPF: ");
     std::cin >> cpf;
 
-    if (verificarLogin(cpf)) { // verificar se o login existe no sistema
+    if (verificarLogin(cpf)) { 
         print("Ja existe um cliente com esse CPF! \n");
-        print("Pressione ENTER para continuar...");
-        std::cin.ignore();
+        print("Pressione ENTER...");
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); 
         std::cin.get();
         return nullptr;
     }
@@ -562,8 +607,8 @@ Cliente* SistemaCliente::cadastrarCliente() {
     clientes.emplace_back(nome, cpf);
 
     print ("Cliente cadastrado com sucesso!\n");
-    print ("Pressione ENTER para continuar...");
-    std::cin.ignore();
+    print ("Pressione ENTER...");
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     std::cin.get();
 
     return &clientes.back();
@@ -571,9 +616,7 @@ Cliente* SistemaCliente::cadastrarCliente() {
 
 bool SistemaCliente::verificarLogin(const std::string& cpf) {
     for (auto& c : clientes) {
-        if (c.getCPF() == cpf) {
-            return true;
-        }
+        if (c.getCPF() == cpf) return true;
     }
     return false;
 }
@@ -584,21 +627,22 @@ void SistemaCliente::loginCliente(){
     print("Digite seu CPF: ");
     std:: cin >> cpf;
 
-    if (verificarLogin(cpf)) {
-        print("Login realizado!\n");
-        print("Pressione ENTER para continuar...");
-        std::cin.ignore();
-        std::cin.get();
-
-        exibirMenu(); // leva ao menu do cliente
-    
-    }else{
-        print("CPF nao encontrado. \n");
-        print("Pressione ENTER para continuar...");
-        std::cin.ignore();
-        std::cin.get();
+    for (auto& c : clientes) {
+        if (c.getCPF() == cpf) {
+            clienteLogado = &c;
+            print("Login realizado!\n");
+            print("Pressione ENTER...");
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            std::cin.get();
+            exibirMenu(); 
+            return;
+        }
     }
-}
 
+    print("CPF nao encontrado. \n");
+    print("Pressione ENTER...");
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    std::cin.get();
+}
 
 
