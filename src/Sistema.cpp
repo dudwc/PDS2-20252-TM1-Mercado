@@ -452,6 +452,7 @@ void SistemaCliente::exibirMenu() {
                         case 1: {
                             std::string nome;
                             double qtd;
+                            estoque.listarProdutos();
                             print("Digite o nome do produto: ");
                             std::cin.ignore(); 
                             std::getline(std::cin, nome);
@@ -656,5 +657,6 @@ void SistemaCliente::loginCliente(){
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     std::cin.get();
 }
+
 
 
