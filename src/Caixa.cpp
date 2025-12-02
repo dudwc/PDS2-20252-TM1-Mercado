@@ -11,12 +11,12 @@ Caixa::Caixa(Estoque &estoque) : estoque(estoque) {}
 
 bool Caixa::adicionarItem(const std::string &nome, double quantidade){
         if (quantidade <= 0){
-                std::cerr << "Quantidade inválida.\n";
+                std::cerr << "Quantidade invalida.\n";
                 return false;
         }
         const Produto* p = estoque.buscarNome(nome);
         if(p == nullptr){
-                std::cerr << "Produto não encontrado.\n";
+                std::cerr << "Produto nao encontrado.\n";
                 return false;
         }
         int id = p->getID();
@@ -44,19 +44,19 @@ bool Caixa::adicionarItem(const std::string &nome, double quantidade){
 
 bool Caixa::removerItem(const std::string &nome, double quantidade){
         if (quantidade <= 0){
-                std::cerr << "Quantidade inválida.\n";
+                std::cerr << "Quantidade invalida.\n";
                 return false;
         }
         const Produto* p =estoque.buscarNome(nome);
         if(p == nullptr){
-                std::cerr << "Produto não encontrado./n";
+                std::cerr << "Produto nao encontrado.\n";
                 return false;
         }
 
         int id = p->getID();
 
         if (carrinho.find(id) == carrinho.end()){
-                std::cerr << "Este produto não está no carrinho.\n";
+                std::cerr << "Este produto nao está no carrinho.\n";
                 return false;
         }
         if (quantidade >= carrinho[id]){
@@ -76,7 +76,7 @@ double Caixa::exibirTotal() const{
                 if (p != nullptr){
                         total += p->getPreco() * quantidade;
                 }else{
-                        std::cerr << "Produto com ID:" << chave << " não encontrado" << std::endl;
+                        std::cerr << "Produto com ID:" << chave << " nao encontrado" << std::endl;
                 }
         }
         return total;
@@ -94,7 +94,7 @@ void Caixa::exibirCarrinho() const{
                 if (p != nullptr){
                         std::cout << std::left << std::setw(20) << p->getName() << par.second << std::endl;
                 }else{
-                        std::cerr << "Produto com código " << chave << " não encontrado no estoque!" << std::endl;
+                        std::cerr << "Produto com codigo " << chave << " nao encontrado no estoque!" << std::endl;
                 }
         }
 }
